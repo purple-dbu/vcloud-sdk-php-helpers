@@ -14,7 +14,7 @@ Installation
 Installation can be done via [Composer](http://getcomposer.org/). All you need
 is to add this to your `composer.json`:
 
-```
+```json
   "repositories": [
     {
       "type": "pear",
@@ -42,15 +42,10 @@ helps you determining the current logged user rights.
 not
 
 ```php
-use \Purple\Dbu\VCloud\Helpers\Right as RightHelper;
-use \VMware_VCloud_SDK_Service as SDKService;
-```
-```php
-...
-$service = SDKService::getService();
+$service = \VMware_VCloud_SDK_Service::getService();
 $service->login(...);
 
-RightHelper::isOrganizationAdmin($service)
+\VCloud\Helpers\Right::create($service)->isOrganizationAdmin();
 
 // => true|false depending on user rights
 ```
@@ -63,32 +58,32 @@ Service with ease. It provides abstraction for pagination.
 
 
 #### Get all results for query 'adminVApp'
+
 ```php
-use \Purple\Dbu\VCloud\Helpers\Query as QueryHelper;
-use \VMware_VCloud_SDK_Query_Types as SDKQueryTypes;
-```
-```php
-QueryHelper::queryAll(SDKQueryTypes::ADMIN_VAPP);
+$service = \VMware_VCloud_SDK_Service::getService();
+$service->login(...);
+
+\VCloud\Helpers\Query::create($service)->queryRecords(\VMware_VCloud_SDK_Query_Types::ADMIN_VAPP);
 
 // => array(
-//        QueryResultAdminVAppRecordType,
+//        \VMware_VCloud_API_QueryResultAdminVAppRecordType,
 //        ...
 //    )
 ```
 
 #### Get the query result for 'adminVApp' with id 'c47ddf20-05de-44f5-b79e-c463992ffd3f'
+
 ```php
-use \Purple\Dbu\VCloud\Helpers\Query as QueryHelper;
-use \VMware_VCloud_SDK_Query_Types as SDKQueryTypes;
-```
-```php
-QueryHelper::query(
-    SDKQueryTypes::ADMIN_VAPP,
+$service = \VMware_VCloud_SDK_Service::getService();
+$service->login(...);
+
+\VCloud\Helpers\Query::create($service)->queryRecord(
+    \VMware_VCloud_SDK_Query_Types::ADMIN_VAPP,
     'id==c47ddf20-05de-44f5-b79e-c463992ffd3f'
 );
 
-// => array(QueryResultAdminVAppRecordType)
-// OR empty array if no vApp exist with such id
+// => \VMware_VCloud_API_QueryResultAdminVAppRecordType
+// OR null if no vApp exist with such id
 ```
 
 
@@ -112,28 +107,22 @@ form:
 #### Get the error message
 
 ```php
-use \Purple\Dbu\VCloud\Helpers\Exception as ExceptionHelper;
-use \VMware_VCloud_SDK_Exception as SDKException;
-```
-```php
 ...
-catch(SDKException $e) {
-  ExceptionHelper::getMessage($e);
-  // => (string) The message contained in the error XML
+catch(\VMware_VCloud_SDK_Exception $e) {
+    \VCloud\Helpers\Exception::create($e)->getMessage($e);
+
+    // => (string) The message contained in the error XML
 }
 ```
 
 #### Get the error code
 
 ```php
-use \Purple\Dbu\VCloud\Helpers\Exception as ExceptionHelper;
-use \VMware_VCloud_SDK_Exception as SDKException;
-```
-```php
 ...
-catch(SDKException $e) {
-  ExceptionHelper::getMajorErrorCode($e);
-  // => (int) The major error code contained in the error XML
+catch(\VMware_VCloud_SDK_Exception $e) {
+    \VCloud\Helpers\Exception::create($e)->getMajorErrorCode($e);
+
+    // => (int) The major error code contained in the error XML
 }
 ```
 
