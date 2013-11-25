@@ -48,4 +48,37 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             $queryRecord
         );
     }
+
+    public function testQueryReferences()
+    {
+        $queryReferences = \VCloud\Helpers\Query::create($this->queryService)->queryReferences('adminUser');
+        $this->assertEquals(
+            $this->config->totalUsers,
+            count($queryReferences)
+        );
+    }
+
+    public function testQueryReference()
+    {
+        $queryReference = \VCloud\Helpers\Query::create($this->queryService)->queryReference(
+            'adminUser',
+            'href==https://' . $this->config->host . '/api/admin/user/' . $this->config->knownUser
+        );
+        $this->assertEquals(
+            'VMware_VCloud_API_ReferenceType',
+            get_class($queryReference)
+        );
+    }
+
+    public function testQueryReferenceNotFound()
+    {
+        $queryReference = \VCloud\Helpers\Query::create($this->queryService)->queryReference(
+            'adminUser',
+            'href==https://' . $this->config->host . '/api/admin/user/' . $this->config->unknownUser
+        );
+        $this->assertEquals(
+            false,
+            $queryReference
+        );
+    }
 }

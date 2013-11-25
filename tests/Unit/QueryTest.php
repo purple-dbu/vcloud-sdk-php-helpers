@@ -43,4 +43,37 @@ class QueryTestCase extends \PHPUnit_Framework_TestCase
             $queryRecord
         );
     }
+
+    public function testQueryReferences()
+    {
+        $queryReferences = \VCloud\Helpers\Query::create($this->queryService)->queryReferences('adminUser');
+        $this->assertEquals(
+            87,
+            count($queryReferences)
+        );
+    }
+
+    public function testQueryReference()
+    {
+        $queryReference = \VCloud\Helpers\Query::create($this->queryService)->queryReference(
+            'adminUser',
+            'href==https://vcloud-director.local/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674'
+        );
+        $this->assertEquals(
+            'VMware_VCloud_API_ReferenceType',
+            get_class($queryReference)
+        );
+    }
+
+    public function testQueryReferenceNotFound()
+    {
+        $queryReference = \VCloud\Helpers\Query::create($this->queryService)->queryReference(
+            'adminUser',
+            'href==tupeuxpastest'
+        );
+        $this->assertEquals(
+            false,
+            $queryReference
+        );
+    }
 }

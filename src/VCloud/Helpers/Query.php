@@ -59,7 +59,7 @@ class Query
      *
      * @return boolean Returns true if it's the last page, false otherwise
      */
-    protected function isLastRecordsPage(\VMware_VCloud_API_QueryResultRecordsType $records)
+    protected function isLastPage(\VMware_VCloud_API_ResourceType $records)
     {
         foreach ($records->getLink() as $link) {
             if ($link->get_rel() === 'lastPage') {
@@ -101,7 +101,7 @@ class Query
     public function queryRecords($type, $filter = null)
     {
         $allRecords = array();
-        for ($page = 1, $records = null; $records === null || !$this->isLastRecordsPage($records); $page++) {
+        for ($page = 1, $records = null; $records === null || !$this->isLastPage($records); $page++) {
             $records = $this->queryRecordsPage($type, $filter, $page);
             $allRecords = array_merge($allRecords, $records->getRecord());
         }
@@ -121,5 +121,59 @@ class Query
     {
         $records = $this->queryRecordsPage($type, $filter, 1)->getRecord();
         return count($records) > 0 ? $records[0] : false;
+    }
+
+    /**
+     * Send a query for a specific page and get references
+     *
+     * @param string $type   The query type
+     * @param string $filter The query filter
+     * @param int    $page   The page to retrieve
+     * @return \VMware_VCloud_API_QueryResultReferencesType Returns the query references
+     */
+    protected function queryReferencesPage($type, $filter, $page)
+    {
+        $params = new \VMware_VCloud_SDK_Query_Params();
+        $params->setPageSize($this->pageSize);
+        $params->setPage($page);
+
+        if ($filter !== null) {
+            $params->setFilter($filter);
+        }
+
+        return $this->queryService->queryReferences($type, $params);
+    }
+
+    /**
+     * Send a query and get references
+     *
+     * @param string $type   The query type
+     * @param string $filter The query filter
+     * @param int    $page   The page to retrieve
+     * @return array Returns an array of VMware_VCloud_API_QueryResultReferenceType
+     */
+    public function queryReferences($type, $filter = null)
+    {
+        $allReferences = array();
+        for ($page = 1, $references = null; $references === null || !$this->isLastPage($references); $page++) {
+            $references = $this->queryReferencesPage($type, $filter, $page);
+            $allReferences = array_merge($allReferences, $references->getReference());
+        }
+        return $allReferences;
+    }
+
+    /**
+     * Send a query and get the first reference
+     *
+     * @param string $type   The query type
+     * @param string $filter The query filter
+     * @param int    $page   The page to retrieve
+     * @return VMware_VCloud_API_QueryResultReferenceType|boolean Returns the first
+     * reference of the query, or false if there isn't any result.
+     */
+    public function queryReference($type, $filter = null)
+    {
+        $references = $this->queryReferencesPage($type, $filter, 1)->getReference();
+        return count($references) > 0 ? $references[0] : false;
     }
 }
