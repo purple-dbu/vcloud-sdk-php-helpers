@@ -1,0 +1,40 @@
+<?php
+
+namespace Test\VCloud\Helpers\Unit;
+
+class MetadataTestCase extends \PHPUnit_Framework_TestCase
+{
+    protected $service;
+
+    public function setUp()
+    {
+        $this->service = new Stub\Service();
+    }
+
+    public function testGetObjectsWithoutValue()
+    {
+        $this->assertEquals(
+            2,
+            count(
+                \VCloud\Helpers\Metadata::create($this->service)->getObjects(
+                    'adminVAppTemplate',
+                    'myMetadata'
+                )
+            )
+        );
+    }
+
+    public function testGetObjectsWithValue()
+    {
+        $this->assertEquals(
+            1,
+            count(
+                \VCloud\Helpers\Metadata::create($this->service)->getObjects(
+                    'adminVAppTemplate',
+                    'myMetadata',
+                    'someValue'
+                )
+            )
+        );
+    }
+}

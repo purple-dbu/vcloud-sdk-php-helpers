@@ -128,6 +128,50 @@ catch(\VMware_VCloud_SDK_Exception $e) {
 ```
 
 
+### Metadata helper
+
+The Metadata Helper gives you the ability to manipulate metadata on vCloud
+objects with ease. It helps finding objects with a particular metadata (to
+either one particular value, or any value).
+
+#### Get all vApp Template with a given metadata set (any value)
+
+```php
+$service = \VMware_VCloud_SDK_Service::getService();
+$service->login(...);
+
+\VCloud\Helpers\Metadata::create($service)->getObjects(
+    \VMware_VCloud_SDK_Query_Types::ADMIN_VAPP_TEMPLATE,
+    'myMetadata'
+);
+
+// => array(
+//        \VMware_VCloud_SDK_VAppTemplate,
+//        ...
+//    )
+// The result array contains all the vApp Templates that hold a metadata named
+// "myMetadata"
+```
+
+#### Get the first vApp Template with a given metadata set to a particular value
+
+```php
+$service = \VMware_VCloud_SDK_Service::getService();
+$service->login(...);
+
+\VCloud\Helpers\Metadata::create($service)->getObject(
+    \VMware_VCloud_SDK_Query_Types::ADMIN_VAPP_TEMPLATE,
+    'someId',
+    '23d6deb1-1778-4325-8289-2f150d122675'
+);
+
+// => \VMware_VCloud_SDK_VAppTemplate
+// 
+// The result vApp Template is the first vApp Template that holds a metadata
+// named "someId" with the value "23d6deb1-1778-4325-8289-2f150d122675"
+```
+
+
 Licensing
 ---------
 

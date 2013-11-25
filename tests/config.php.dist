@@ -13,4 +13,11 @@ return array(
     'knownUser' => '23d6deb1-1778-4325-8289-2f150d122674',
     'unknownUser' => '23d6deb1-1778-4325-8289-2f150d122675',
     'totalUsers' => 87,
+    'metadata' => array(
+        'type' => 'adminVAppTemplate',
+        'name' => 'vCloudHelpersTestMetadata',
+        'value' => 'Tu peux pas test',
+        'countWithValue' => 1,
+        'countWithoutValue' => 2,
+    ),
 );
