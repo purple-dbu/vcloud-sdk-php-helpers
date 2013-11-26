@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    phpunit -c phpunit.xml
--->
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -14,15 +11,15 @@
          bootstrap="./tests/bootstrap.php">
 
     <testsuites>
-        <testsuite name="php-cli-helpers unit tests">
-            <directory>./tests/Unit/</directory>
+        <testsuite name="php-cli-helpers functional tests">
+            <directory>./tests/Functional/</directory>
         </testsuite>
     </testsuites>
 
-    <filter>
-      <whitelist processUncoveredFilesFromWhitelist="true">
-        <directory suffix=".php">./src/</directory>
-      </whitelist>
-    </filter>
+    <php>
+        <!-- See `tests/config.php` -->
+        <const name="APPLICATION_ENV" value="staging"/>
+        <const name="PROXY_WRITE_STUBS" value="false"/>
+    </php>
 
 </phpunit>

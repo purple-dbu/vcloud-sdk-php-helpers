@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    phpunit -c phpunit.xml
--->
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          colors="true"
@@ -11,12 +8,18 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="./tests/Functional/bootstrap.php">
+         bootstrap="./tests/bootstrap.php">
 
     <testsuites>
         <testsuite name="php-cli-helpers functional tests">
-            <directory>./tests/functional/</directory>
+            <directory>./tests/Functional/</directory>
         </testsuite>
     </testsuites>
+
+    <php>
+        <!-- See `tests/config.php` -->
+        <const name="APPLICATION_ENV" value="staging"/>
+        <const name="PROXY_WRITE_STUBS" value="true"/>
+    </php>
 
 </phpunit>
