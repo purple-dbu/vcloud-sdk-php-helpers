@@ -9,11 +9,8 @@ before_script:
   - composer install --dev --no-interaction
 
 script:
-  - mkdir -p build/logs
   - cp tests/config.php.dist tests/config.php
-  - vendor/bin/phpcs --standard=PSR1 src/
-  - vendor/bin/phpcs --standard=PSR2 src/
-  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - make test
 
 after_script:
   - vendor/bin/coveralls -v

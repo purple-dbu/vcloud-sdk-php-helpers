@@ -70,7 +70,12 @@ switch (APPLICATION_ENV) {
     // In `testing` environment mode, create a HTTP Proxy that redirects to XML
     // stub files instead of the real vCloud Director API
     case 'testing':
-        $client = new Test\HttpProxy\StubReader($config->httpProxy->toArray());
+        $client = new Test\HttpProxy\StubReader(
+            $config->httpProxy->directory,
+            $config->httpProxy->hosts->toArray(),
+            $config->httpProxy->excludeRequestHeaders->toArray(),
+            $config->httpProxy->excludeResponseHeaders->toArray()
+        );
         $service = VMware_VCloud_SDK_Service::getService($client);
         break;
 

@@ -7,6 +7,8 @@ return array(
         ),
         'excludeRequestHeaders' => array(
             'user-agent',
+            'authorization',
+            'x-vcloud-authorization',
         ),
         'excludeResponseHeaders' => array(
             'date',

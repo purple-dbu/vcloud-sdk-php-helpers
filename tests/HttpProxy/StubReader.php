@@ -11,12 +11,12 @@ class StubReader extends \VMware_VCloud_SDK_Http_Client
     protected $excludeRequestHeaders;
     protected $excludeResponseHeaders;
 
-    public function __construct($config)
+    public function __construct($directory, $hosts, $excludeRequestHeaders, $excludeResponseHeaders)
     {
-        $this->directory = $config['directory'];
-        $this->hosts = $config['hosts'];
-        $this->excludeRequestHeaders = $config['excludeRequestHeaders'];
-        $this->excludeResponseHeaders = $config['excludeResponseHeaders'];
+        $this->directory = $directory;
+        $this->hosts = $hosts;
+        $this->excludeRequestHeaders = $excludeRequestHeaders;
+        $this->excludeResponseHeaders = $excludeResponseHeaders;
     }
 
     protected function sendRequest($url, $method, $headers = null, $body = null)

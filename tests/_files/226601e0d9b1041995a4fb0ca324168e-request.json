@@ -1,9 +1,0 @@
-[
-	"https:\/\/vcloud-director\/api\/sessions",
-	"POST",
-	{
-		"authorization":"Basic YWRtaW5pc3RyYXRvckBzeXN0ZW06ZWNvY2VudGVy",
-		"accept":"application\/*+xml;version=5.1"
-	},
-	null
-]

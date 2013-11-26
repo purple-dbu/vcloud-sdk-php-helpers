@@ -57,13 +57,15 @@ class StubWriter implements \SplObserver
 
     public static function getRequestAsString($url, $method, $headers, $body, $excludeHeaders)
     {
-        foreach ($excludeHeaders as $header) {
-            unset($headers[$header]);
-        }
-
         $realHeaders = array();
         foreach ($headers as $name => $value) {
-            $realHeaders[ strtolower($name) ] = $value;
+            if (!in_array(strtolower($name), $excludeHeaders)) {
+                $realHeaders[ strtolower($name) ] = $value;
+            }
+        }
+
+        foreach ($excludeHeaders as $header) {
+            unset($realHeaders[ strtolower($header) ]);
         }
 
         return Json::prettyPrint(
@@ -73,13 +75,11 @@ class StubWriter implements \SplObserver
 
     public static function getResponseAsString($status, $reasonPhrase, $headers, $body, $excludeHeaders)
     {
-        foreach ($excludeHeaders as $header) {
-            unset($headers[$header]);
-        }
-
         $realHeaders = array();
         foreach ($headers as $name => $value) {
-            $realHeaders[ strtolower($name) ] = $value;
+            if (!in_array(strtolower($name), $excludeHeaders)) {
+                $realHeaders[ strtolower($name) ] = $value;
+            }
         }
 
         return Json::prettyPrint(

@@ -11,10 +11,11 @@ all: composer.lock
 	# Dependencies are up-to-date
 
 clean:
-	[ -d vendor ] && rm -Rf vendor
-	[ -e composer.lock ] && rm -f composer.lock
-	[ -e composer.phar ] && rm -f composer.phar
-	[ -d tests/_files ] && rm -Rf tests/_files
+	[ ! -d vendor ] || rm -Rf vendor
+	[ ! -e composer.lock ] || rm -f composer.lock
+	[ ! -e composer.phar ] || rm -f composer.phar
+	[ ! -d tests/_files ] || rm -Rf tests/_files
+	[ ! -e tests/_files.tar.gz ] || rm -Rf tests/_files.tar.gz
 
 # Testing
 
@@ -22,12 +23,18 @@ lint: composer.lock
 	vendor/bin/phpcs$(EXT) --standard=PSR1 src/ tests/
 	vendor/bin/phpcs$(EXT) --standard=PSR2 src/ tests/
 
-tests/_files: composer.lock tests/config.php tests/Unit src
-	make lint
-	[ ! -d tests/_files ] || rm -Rf tests/_files
-	vendor/bin/phpunit$(EXT) --configuration phpunit-integration.xml
+tests/_files.tar.gz: composer.lock tests/config.php tests/Unit src
+	make lint \
+	&& [ ! -d tests/_files ] || rm -Rf tests/_files \
+	&& [ ! -e tests/_files.tar.gz ] || rm -Rf tests/_files.tar.gz \
+	&& vendor/bin/phpunit$(EXT) --configuration phpunit-integration.xml \
+	&& cd tests/_files/ && tar cvfz ../_files.tar.gz *.json \
+	&& [ ! -d tests/_files ] || rm -Rf tests/_files
 
-test: composer.lock tests/config.php tests/_files
+tests/_files: tests/_files.tar.gz
+	tar xvfz tests/_files.tar.gz -C tests/_files
+
+test: composer.lock tests/_files
 	make lint \
 	&& vendor/bin/phpunit$(EXT) --coverage-html build/logs/coverage --coverage-text=build/logs/coverage.txt \
 	&& $(SHOW_COVERAGE)
