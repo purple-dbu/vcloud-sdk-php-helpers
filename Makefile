@@ -23,18 +23,18 @@ lint: composer.lock
 	vendor/bin/phpcs$(EXT) --standard=PSR2 src/ tests/
 
 tests/_files: composer.lock tests/config.php
+	make integration
+
+test: composer.lock tests/config.php
 	make lint \
 	&& ([ ! -d tests/_files ] || rm -Rf tests/_files) \
-	&& vendor/bin/phpunit$(EXT) --configuration phpunit-stubs.xml
-
-test: composer.lock tests/config.php tests/_files
-	make lint \
+	&& vendor/bin/phpunit$(EXT) --configuration phpunit-integration.xml \
 	&& vendor/bin/phpunit$(EXT) --coverage-html build/logs/coverage --coverage-text=build/logs/coverage.txt \
 	&& $(SHOW_COVERAGE)
 
-integration: composer.lock tests/config.php
+unit: composer.lock tests/config.php tests/_files
 	make lint \
-	&& vendor/bin/phpunit$(EXT) --coverage-html build/logs/coverage --coverage-text=build/logs/coverage.txt --configuration phpunit-integration.xml \
+	&& vendor/bin/phpunit$(EXT) --coverage-html build/logs/coverage --coverage-text=build/logs/coverage.txt \
 	&& $(SHOW_COVERAGE)
 
 # Composer
