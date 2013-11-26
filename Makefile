@@ -37,7 +37,7 @@ tests/_files: tests/_files.tar.gz
 
 test: composer.lock tests/_files
 	make lint \
-	&& vendor/bin/phpunit$(EXT) --coverage-html build/logs/coverage --coverage-text=build/logs/coverage.txt \
+	&& vendor/bin/phpunit$(EXT) --coverage-html build/logs/coverage --coverage-text=build/logs/coverage.txt --coverage-clover=build/logs/clover.xml \
 	&& $(SHOW_COVERAGE)
 
 # Composer
