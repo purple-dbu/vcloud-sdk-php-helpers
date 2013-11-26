@@ -41,4 +41,13 @@ return array(
         'countWithValue' => 1,
         'countWithoutValue' => 2,
     ),
+    'data' => array(
+        'service' => array(
+            'sampleObject' => array(
+                'type' => 'admin.user',
+                'href' => 'https:/vcloud-director/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674',
+                'name' => 'yconan',
+            ),
+        )
+    ),
 );
