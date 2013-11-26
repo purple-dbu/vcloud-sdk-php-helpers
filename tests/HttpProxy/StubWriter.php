@@ -34,7 +34,8 @@ class StubWriter implements \SplObserver
                 $subject->getMethod(),
                 $subject->getHeaders(),
                 null,
-                $this->excludeRequestHeaders
+                $this->excludeRequestHeaders,
+                $this->hosts
             );
 
             $response = self::getResponseAsString(
@@ -42,7 +43,8 @@ class StubWriter implements \SplObserver
                 $event['data']->getReasonPhrase(),
                 $event['data']->getHeader(),
                 $event['data']->getBody(),
-                $this->excludeResponseHeaders
+                $this->excludeResponseHeaders,
+                $this->hosts
             );
 
             $filename = self::hash($request);
@@ -55,7 +57,7 @@ class StubWriter implements \SplObserver
         }
     }
 
-    public static function getRequestAsString($url, $method, $headers, $body, $excludeHeaders)
+    public static function getRequestAsString($url, $method, $headers, $body, $excludeHeaders, $hosts)
     {
         $realHeaders = array();
         foreach ($headers as $name => $value) {
@@ -68,18 +70,26 @@ class StubWriter implements \SplObserver
             unset($realHeaders[ strtolower($header) ]);
         }
 
+        foreach ($hosts as $host => $replacement) {
+            $url = str_replace($host, $replacement, $url);
+        }
+
         return Json::prettyPrint(
             Json::encode(array($url, $method, $realHeaders, $body))
         );
     }
 
-    public static function getResponseAsString($status, $reasonPhrase, $headers, $body, $excludeHeaders)
+    public static function getResponseAsString($status, $reasonPhrase, $headers, $body, $excludeHeaders, $hosts)
     {
         $realHeaders = array();
         foreach ($headers as $name => $value) {
             if (!in_array(strtolower($name), $excludeHeaders)) {
                 $realHeaders[ strtolower($name) ] = $value;
             }
+        }
+
+        foreach ($hosts as $host => $replacement) {
+            $body = str_replace($host, $replacement, $body);
         }
 
         return Json::prettyPrint(

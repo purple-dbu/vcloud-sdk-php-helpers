@@ -37,7 +37,8 @@ class StubReader extends \VMware_VCloud_SDK_Http_Client
             $method,
             $headers,
             $body,
-            $this->excludeRequestHeaders
+            $this->excludeRequestHeaders,
+            $this->hosts
         );
 
         $filename = StubWriter::hash($request);
