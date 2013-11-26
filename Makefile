@@ -32,6 +32,7 @@ tests/_files.tar.gz:
 	&& [ ! -d tests/_files ] || rm -Rf tests/_files
 
 tests/_files: tests/_files.tar.gz
+	[ -d tests/_files ] || mkdir -p tests/_files
 	tar xvfz tests/_files.tar.gz -C tests/_files
 
 test: composer.lock tests/_files
