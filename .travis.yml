@@ -10,6 +10,7 @@ before_script:
 
 script:
   - mkdir -p build/logs
+  - cp tests/config.php.dist tests/config.php
   - vendor/bin/phpcs --standard=PSR1 src/
   - vendor/bin/phpcs --standard=PSR2 src/
   - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
