@@ -24,36 +24,28 @@ class StubWriter implements \SplObserver
         $event = $subject->getLastEvent();
         if ($event['name'] === 'receivedBody') {
 
-            $requestHeaders = $subject->getHeaders();
-            foreach ($this->excludeRequestHeaders as $header) {
-                unset($requestHeaders[$header]);
-            }
-
             $url = clone $subject->getUrl();
             if (array_key_exists($url->getHost(), $this->hosts)) {
                 $url->setHost($this->hosts[$url->getHost()]);
             }
 
-            $request = $this->getRequestAsString(
+            $request = self::getRequestAsString(
                 $url->__toString(),
                 $subject->getMethod(),
-                $requestHeaders,
-                null
+                $subject->getHeaders(),
+                null,
+                $this->excludeRequestHeaders
             );
 
-            $responseHeaders = $event['data']->getHeader();
-            foreach ($this->excludeResponseHeaders as $header) {
-                unset($responseHeaders[$header]);
-            }
-
-            $response = $this->getResponseAsString(
+            $response = self::getResponseAsString(
                 $event['data']->getStatus(),
                 $event['data']->getReasonPhrase(),
-                $responseHeaders,
-                $event['data']->getBody()
+                $event['data']->getHeader(),
+                $event['data']->getBody(),
+                $this->excludeResponseHeaders
             );
 
-            $filename = $this->hash($request);
+            $filename = self::hash($request);
 
             if (!is_dir($this->directory)) {
                 mkdir($this->directory, 0770, true);
@@ -63,21 +55,39 @@ class StubWriter implements \SplObserver
         }
     }
 
-    public function getRequestAsString($url, $method, $headers, $body)
+    public static function getRequestAsString($url, $method, $headers, $body, $excludeHeaders)
     {
+        foreach ($excludeHeaders as $header) {
+            unset($headers[$header]);
+        }
+
+        $realHeaders = array();
+        foreach ($headers as $name => $value) {
+            $realHeaders[ strtolower($name) ] = $value;
+        }
+
         return Json::prettyPrint(
-            Json::encode(array($url, $method, $headers, $body))
+            Json::encode(array($url, $method, $realHeaders, $body))
         );
     }
 
-    public function getResponseAsString($status, $reasonPhrase, $headers, $body)
+    public static function getResponseAsString($status, $reasonPhrase, $headers, $body, $excludeHeaders)
     {
+        foreach ($excludeHeaders as $header) {
+            unset($headers[$header]);
+        }
+
+        $realHeaders = array();
+        foreach ($headers as $name => $value) {
+            $realHeaders[ strtolower($name) ] = $value;
+        }
+
         return Json::prettyPrint(
-            Json::encode(array($status, $reasonPhrase, $headers, $body))
+            Json::encode(array($status, $reasonPhrase, $realHeaders, $body))
         );
     }
 
-    public function hash($requestString)
+    public static function hash($requestString)
     {
         return md5($requestString);
     }

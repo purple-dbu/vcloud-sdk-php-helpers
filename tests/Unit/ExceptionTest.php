@@ -4,11 +4,33 @@ namespace Test\VCloud\Helpers\Unit;
 
 class ExceptionTestCase extends \PHPUnit_Framework_TestCase
 {
+    protected $config;
+    protected $service;
     protected $e;
+    protected $id;
 
     public function setUp()
     {
-        $this->e = new \VMware_VCloud_SDK_Exception(file_get_contents(__DIR__ . '/_files/Error.xml'));
+        global $service, $config;
+        $this->config = $config;
+        $this->service = $service;
+        $this->id = $this->config->unknownOrganization;
+
+        $reference = new \VMware_VCloud_API_ReferenceType();
+        $reference->set_href('https://' . $this->config->host . '/api/org/' . $this->id);
+        $reference->set_type('application/vnd.vmware.vcloud.org+xml');
+
+        $unknownOrganization = $service->createSdkObj($reference);
+
+        try {
+            $unknownOrganization->getOrg();
+            throw new \RuntimeException(
+                'Failed generating SDK Exception during setup, organization "'
+                . $this->id . '" exists where it shouldn\'t'
+            );
+        } catch (\VMware_VCloud_SDK_Exception $e) {
+            $this->e = $e;
+        }
     }
 
     public function testGetOriginalException()
@@ -19,10 +41,7 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     public function testGetMessage()
     {
         $this->assertEquals(
-            'The requested operation could not be executed because media '
-            . '"reconfMedia-vm-69cfa436-a55c-4045-be62-f110bbb5801d_1372317643" '
-            . 'is mounted by VM(s): "__e2cLBHA__Production_m_1372316882".  Please '
-            . 'eject media from the VM(s) before deleting media.',
+            'The VCD entity com.vmware.vcloud.entity.org:' . $this->id . ' does not exist.',
             \VCloud\Helpers\Exception::create($this->e)->getMessage()
         );
     }
@@ -30,7 +49,7 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     public function testGetMajorErrorCode()
     {
         $this->assertEquals(
-            '400',
+            '403',
             \VCloud\Helpers\Exception::create($this->e)->getMajorErrorCode()
         );
     }
@@ -38,7 +57,7 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     public function testGetMinorErrorCode()
     {
         $this->assertEquals(
-            'BAD_REQUEST',
+            'ACCESS_TO_RESOURCE_IS_FORBIDDEN',
             \VCloud\Helpers\Exception::create($this->e)->getMinorErrorCode()
         );
     }
@@ -46,7 +65,7 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     public function testGetStackTrace()
     {
         $this->assertEquals(
-            175,
+            158,
             count(explode("\n", \VCloud\Helpers\Exception::create($this->e)->getStackTrace()))
         );
     }

@@ -1,0 +1,10 @@
+[
+	"https:\/\/vcloud-director\/api\/vAppTemplate\/vappTemplate-3ca8f335-b91c-434d-936a-ccadb51f3125\/metadata",
+	"GET",
+	{
+		"content-type":"",
+		"accept":"application\/*+xml;version=5.1",
+		"x-vcloud-authorization":"ax4LyZeR4EVY6ah1eYH6Q5k7\/oZWtWB2nZ+IfsKsehk="
+	},
+	null
+]

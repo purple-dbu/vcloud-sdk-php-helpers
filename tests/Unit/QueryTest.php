@@ -2,20 +2,28 @@
 
 namespace Test\VCloud\Helpers\Unit;
 
-class QueryTestCase extends \PHPUnit_Framework_TestCase
+class QueryTest extends \PHPUnit_Framework_TestCase
 {
+    protected $config;
+    protected $service;
     protected $queryService;
 
     public function setUp()
     {
-        $this->queryService = new Stub\QueryService();
+        global $service, $config;
+        $this->config = $config;
+        $this->service = $service;
+        $this->queryService = $service->getQueryService();
     }
 
     public function testQueryRecords()
     {
-        $queryRecords = \VCloud\Helpers\Query::create($this->queryService)->queryRecords('adminUser');
+        $queryRecords = \VCloud\Helpers\Query::create(
+            $this->queryService,
+            $this->config->queryPageSize
+        )->queryRecords('adminUser');
         $this->assertEquals(
-            86,
+            $this->config->totalUsers,
             count($queryRecords)
         );
     }
@@ -24,7 +32,7 @@ class QueryTestCase extends \PHPUnit_Framework_TestCase
     {
         $queryRecord = \VCloud\Helpers\Query::create($this->queryService)->queryRecord(
             'adminUser',
-            'href==https://vcloud-director.local/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674'
+            'href==https://' . $this->config->host . '/api/admin/user/' . $this->config->knownUser
         );
         $this->assertEquals(
             'VMware_VCloud_API_QueryResultAdminUserRecordType',
@@ -36,7 +44,7 @@ class QueryTestCase extends \PHPUnit_Framework_TestCase
     {
         $queryRecord = \VCloud\Helpers\Query::create($this->queryService)->queryRecord(
             'adminUser',
-            'href==tupeuxpastest'
+            'href==https://' . $this->config->host . '/api/admin/user/' . $this->config->unknownUser
         );
         $this->assertEquals(
             false,
@@ -46,9 +54,12 @@ class QueryTestCase extends \PHPUnit_Framework_TestCase
 
     public function testQueryReferences()
     {
-        $queryReferences = \VCloud\Helpers\Query::create($this->queryService)->queryReferences('adminUser');
+        $queryReferences = \VCloud\Helpers\Query::create(
+            $this->queryService,
+            $this->config->usersQueryPageSize
+        )->queryReferences('adminUser');
         $this->assertEquals(
-            87,
+            $this->config->totalUsers,
             count($queryReferences)
         );
     }
@@ -57,7 +68,7 @@ class QueryTestCase extends \PHPUnit_Framework_TestCase
     {
         $queryReference = \VCloud\Helpers\Query::create($this->queryService)->queryReference(
             'adminUser',
-            'href==https://vcloud-director.local/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674'
+            'href==https://' . $this->config->host . '/api/admin/user/' . $this->config->knownUser
         );
         $this->assertEquals(
             'VMware_VCloud_API_ReferenceType',
@@ -69,7 +80,7 @@ class QueryTestCase extends \PHPUnit_Framework_TestCase
     {
         $queryReference = \VCloud\Helpers\Query::create($this->queryService)->queryReference(
             'adminUser',
-            'href==tupeuxpastest'
+            'href==https://' . $this->config->host . '/api/admin/user/' . $this->config->unknownUser
         );
         $this->assertEquals(
             false,

@@ -21,7 +21,7 @@
  *             into `tests/config.php`.
  */
 if (!defined('APPLICATION_ENV')) {
-    define('APPLICATION_ENV', 'testing');
+    throw new Exception('APPLICATION_ENV must be defined in PHPUnit configuration file');
 }
 
 /**
@@ -29,8 +29,8 @@ if (!defined('APPLICATION_ENV')) {
  * be written by the HTTP Proxy (`true`), or not (`false`). This only apply
  * in `staging` application environment mode.`
  */
-if (!defined('PROXY_WRITE_STUBS')) {
-    define('PROXY_WRITE_STUBS', 'false');
+if (APPLICATION_ENV === 'staging' && !defined('PROXY_WRITE_STUBS')) {
+    throw new Exception('PROXY_WRITE_STUBS must be defined in PHPUnit configuration file');
 }
 
 /**
@@ -70,8 +70,8 @@ switch (APPLICATION_ENV) {
     // In `testing` environment mode, create a HTTP Proxy that redirects to XML
     // stub files instead of the real vCloud Director API
     case 'testing':
-        // TODO $client
-        $service = VMware_VCloud_SDK_Service::getService();
+        $client = new Test\HttpProxy\StubReader($config->httpProxy->toArray());
+        $service = VMware_VCloud_SDK_Service::getService($client);
         break;
 
     // In `staging` environment mode:
@@ -90,8 +90,7 @@ switch (APPLICATION_ENV) {
             );
             $service = VMware_VCloud_SDK_Service::getService($client);
             break;
-        }
-        else {
+        } else {
             $service = VMware_VCloud_SDK_Service::getService();
         }
         break;

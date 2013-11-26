@@ -12,7 +12,7 @@
 
     <testsuites>
         <testsuite name="php-cli-helpers functional tests">
-            <directory>./tests/Functional/</directory>
+            <directory>./tests/Unit</directory>
         </testsuite>
     </testsuites>
 
@@ -21,5 +21,11 @@
         <const name="APPLICATION_ENV" value="staging"/>
         <const name="PROXY_WRITE_STUBS" value="false"/>
     </php>
+
+    <filter>
+      <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">./src/</directory>
+      </whitelist>
+    </filter>
 
 </phpunit>

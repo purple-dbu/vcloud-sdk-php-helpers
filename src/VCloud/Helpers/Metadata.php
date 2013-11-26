@@ -26,17 +26,7 @@ class Metadata
 
     protected static function doesObjectMatch($object, $metadataName, $metadataValue)
     {
-        $metadata = $object->getMetadata();
-        if (!$metadata) {
-            return false;
-        }
-
-        $entries = $metadata->getMetadataEntry();
-        if (!$entries) {
-            return false;
-        }
-
-        foreach ($entries as $entry) {
+        foreach ($object->getMetadata()->getMetadataEntry() as $entry) {
             if (self::doesEntryMatch($entry, $metadataName, $metadataValue)) {
                 return true;
             }

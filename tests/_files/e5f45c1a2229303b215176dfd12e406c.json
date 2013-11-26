@@ -1,0 +1,10 @@
+[
+	200,
+	"OK",
+	{
+		"content-type":"application\/vnd.vmware.vcloud.query.references+xml;version=5.1",
+		"content-encoding":"gzip",
+		"content-length":"433"
+	},
+	"\u003C?xml version=\u00221.0\u0022 encoding=\u0022UTF-8\u0022?\u003E\n\u003CUserReferences xmlns=\u0022http:\/\/www.vmware.com\/vcloud\/v1.5\u0022 total=\u00221\u0022 pageSize=\u0022128\u0022 page=\u00221\u0022 name=\u0022adminUser\u0022 type=\u0022application\/vnd.vmware.vcloud.query.references+xml\u0022 href=\u0022https:\/\/vcd-demo.ecocenter.fr\/api\/query?type=adminUser\u0026amp;page=1\u0026amp;pageSize=128\u0026amp;format=references\u0026amp;filter=href==https:\/\/vcd-demo.ecocenter.fr\/api\/admin\/user\/23d6deb1-1778-4325-8289-2f150d122674\u0022 xmlns:xsi=\u0022http:\/\/www.w3.org\/2001\/XMLSchema-instance\u0022 xsi:schemaLocation=\u0022http:\/\/www.vmware.com\/vcloud\/v1.5 http:\/\/vcd-demo.ecocenter.fr\/api\/v1.5\/schema\/master.xsd\u0022\u003E\n    \u003CLink rel=\u0022alternate\u0022 type=\u0022application\/vnd.vmware.vcloud.query.records+xml\u0022 href=\u0022https:\/\/vcd-demo.ecocenter.fr\/api\/query?type=adminUser\u0026amp;page=1\u0026amp;pageSize=128\u0026amp;format=records\u0026amp;filter=href==https:\/\/vcd-demo.ecocenter.fr\/api\/admin\/user\/23d6deb1-1778-4325-8289-2f150d122674\u0022\/\u003E\n    \u003CLink rel=\u0022alternate\u0022 type=\u0022application\/vnd.vmware.vcloud.query.idrecords+xml\u0022 href=\u0022https:\/\/vcd-demo.ecocenter.fr\/api\/query?type=adminUser\u0026amp;page=1\u0026amp;pageSize=128\u0026amp;format=idrecords\u0026amp;filter=href==https:\/\/vcd-demo.ecocenter.fr\/api\/admin\/user\/23d6deb1-1778-4325-8289-2f150d122674\u0022\/\u003E\n    \u003CUserReference type=\u0022application\/vnd.vmware.admin.user+xml\u0022 name=\u0022yconan\u0022 id=\u0022urn:vcloud:user:23d6deb1-1778-4325-8289-2f150d122674\u0022 href=\u0022https:\/\/vcd-demo.ecocenter.fr\/api\/admin\/user\/23d6deb1-1778-4325-8289-2f150d122674\u0022\/\u003E\n\u003C\/UserReferences\u003E\n"
+]

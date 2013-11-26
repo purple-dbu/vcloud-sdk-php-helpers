@@ -48,9 +48,9 @@ class Query
      * @param int                      $pageSize     Page size
      * @return Query Returns a new Query Handler
      */
-    public static function create(\VMware_VCloud_SDK_Query $queryService)
+    public static function create(\VMware_VCloud_SDK_Query $queryService, $pageSize = self::DEFAULT_PAGE_SIZE)
     {
-        return new self($queryService);
+        return new self($queryService, $pageSize);
     }
 
     /**

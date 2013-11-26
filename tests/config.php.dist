@@ -1,5 +1,21 @@
 <?php
 return array(
+    'httpProxy' => array(
+        'directory' => __DIR__ . '/_files',
+        'hosts' => array(
+            'my-vcd-host' => 'vcloud-director',
+        ),
+        'excludeRequestHeaders' => array(
+            'user-agent',
+        ),
+        'excludeResponseHeaders' => array(
+            'date',
+            'x-cache',
+            'x-cache-lookup',
+            'via',
+            'connection',
+        ),
+    ),
     'host' => 'my-vcd-host',
     'apiVersion' => '5.5',
     'users' => array(
@@ -13,10 +29,12 @@ return array(
     'knownUser' => '23d6deb1-1778-4325-8289-2f150d122674',
     'unknownUser' => '23d6deb1-1778-4325-8289-2f150d122675',
     'totalUsers' => 87,
+    'queryPageSize' => 50,
     'metadata' => array(
         'type' => 'adminVAppTemplate',
         'name' => 'vCloudHelpersTestMetadata',
         'value' => 'Tu peux pas test',
+        'unknownValue' => 'Some unknown value',
         'countWithValue' => 1,
         'countWithoutValue' => 2,
     ),
