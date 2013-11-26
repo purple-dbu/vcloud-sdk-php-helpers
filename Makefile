@@ -23,7 +23,7 @@ lint: composer.lock
 	vendor/bin/phpcs$(EXT) --standard=PSR1 src/ tests/
 	vendor/bin/phpcs$(EXT) --standard=PSR2 src/ tests/
 
-tests/_files.tar.gz:
+tests/_files.tar.gz: src tests/Unit
 	make lint \
 	&& [ ! -d tests/_files ] || rm -Rf tests/_files \
 	&& [ ! -e tests/_files.tar.gz ] || rm -Rf tests/_files.tar.gz \

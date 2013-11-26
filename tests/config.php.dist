@@ -6,6 +6,7 @@ return array(
             'my-vcd-host' => 'vcloud-director',
         ),
         'excludeRequestHeaders' => array(
+            'accept',
             'user-agent',
             'authorization',
             'x-vcloud-authorization',
