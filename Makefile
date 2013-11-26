@@ -20,8 +20,8 @@ clean:
 # Testing
 
 lint: composer.lock
-	vendor/bin/phpcs$(EXT) --standard=PSR1 src/ tests/
-	vendor/bin/phpcs$(EXT) --standard=PSR2 src/ tests/
+	vendor/bin/phpcs$(EXT) --standard=PSR1 src/ tests/ \
+	&& vendor/bin/phpcs$(EXT) --standard=PSR2 src/ tests/
 
 tests/_files.tar.gz: src tests/Unit
 	make lint \
