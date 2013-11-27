@@ -43,11 +43,16 @@ return array(
     ),
     'data' => array(
         'service' => array(
-            'sampleObject' => array(
-                'type' => 'admin.user',
-                'href' => 'https:/vcloud-director/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674',
-                'name' => 'yconan',
+            'sampleUserObject' => array(
+                'type' => 'org',
+                'href' => 'https://vcd-demo.ecocenter.fr/api/org/a7baacbe-8a59-4286-b8c9-694153bf9e75',
+                'name' => 'ECV',
             ),
-        )
+            'sampleAdminObject' => array(
+                'type' => 'adminUser',
+                'href' => 'https://vcd-demo.ecocenter.fr/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674',
+                'name' => 'yconan',
+            )
+        ),
     ),
 );
