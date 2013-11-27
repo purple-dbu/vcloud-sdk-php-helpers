@@ -26,10 +26,17 @@ class Service
     {
         $object = new \VMware_VCloud_API_ReferenceType();
         $object->set_href($href);
+
         if ($name != null) {
             $object->set_name($name);
         }
-        $object->set_type('application/vnd.vmware.' . $type . '+xml');
+
+        if (preg_match('/^admin(.*)$/', $type, $matches)) {
+            $object->set_type('application/vnd.vmware.admin.' . lcfirst($matches[1]) . '+xml');
+        } else {
+            $object->set_type('application/vnd.vmware.vcloud.' . $type . '+xml');
+        }
+
         return $object;
     }
 }
