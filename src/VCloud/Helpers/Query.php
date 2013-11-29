@@ -38,11 +38,11 @@ class Query
      * Create a new Query Helper and returns it without modifications. This
      * form allow chaining in ALL versions of PHP:
      *
-     *     \VCloud\Helpers\Query::create($e)->queryRecords(...)
+     *     \VCloud\Helpers\Query::create($service)->queryRecords(...)
      *
      * Since PHP 5.4, Class member access on instantiation is allowed:
      *
-     *     new (\VCloud\Helpers\Query($e))->queryRecords(...)
+     *     new (\VCloud\Helpers\Query($service))->queryRecords(...)
      *
      * @param \VMware_VCloud_SDK_Query $queryService The vCloud Director SDK for PHP Query Service
      * @param int                      $pageSize     Page size

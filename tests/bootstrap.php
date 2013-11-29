@@ -76,7 +76,6 @@ switch (APPLICATION_ENV) {
             $config->httpProxy->excludeRequestHeaders->toArray(),
             $config->httpProxy->excludeResponseHeaders->toArray()
         );
-        $service = VMware_VCloud_SDK_Service::getService($client);
         break;
 
     // In `staging` environment mode:
@@ -93,10 +92,7 @@ switch (APPLICATION_ENV) {
                     $config->httpProxy->excludeResponseHeaders->toArray()
                 )
             );
-            $service = VMware_VCloud_SDK_Service::getService($client);
             break;
-        } else {
-            $service = VMware_VCloud_SDK_Service::getService();
         }
         break;
 
@@ -106,22 +102,62 @@ switch (APPLICATION_ENV) {
 }
 
 /**
- * Log in to vCloud Director
+ * Log in to vCloud Director for each user
  */
+$services = array();
+foreach ($config->users->toArray() as $id => $credentials) {
+
+    $services[$id] = \Cli\Helpers\Job::run(
+        'Autenticating as ' . $credentials['username'] . '@' . $credentials['organization'],
+        function ($config, $credentials) {
+
+            $service = isset($client)
+                ? VMware_VCloud_SDK_Service::getService($client)
+                : VMware_VCloud_SDK_Service::getService();
+
+            $service->login(
+                $config->host,
+                array(
+                    'username' => $credentials['username'] . '@' . $credentials['organization'],
+                    'password' => $credentials['password'],
+                ),
+                array(
+                    'proxy_host' => null,
+                    'proxy_port' => null,
+                    'proxy_user' => null,
+                    'proxy_password' => null,
+                    'ssl_verify_peer' => false,
+                    'ssl_verify_host' => false,
+                    'ssl_cafile' => null,
+                ),
+                $config->apiVersion
+            );
+
+            return $service;
+        },
+        array($config, $credentials)
+    );
+}
+
+// TODO remove (legacy)
+$service = isset($client)
+    ? VMware_VCloud_SDK_Service::getService($client)
+    : VMware_VCloud_SDK_Service::getService();
+
 $service->login(
     $config->host,
     array(
-      'username' => $config->users->administrator->username . '@' . $config->users->administrator->organization,
-      'password' => $config->users->administrator->password,
+        'username' => $config->users->administrator->username . '@' . $config->users->administrator->organization,
+        'password' => $config->users->administrator->password,
     ),
     array(
-      'proxy_host' => null,
-      'proxy_port' => null,
-      'proxy_user' => null,
-      'proxy_password' => null,
-      'ssl_verify_peer' => false,
-      'ssl_verify_host' => false,
-      'ssl_cafile' => null,
+        'proxy_host' => null,
+        'proxy_port' => null,
+        'proxy_user' => null,
+        'proxy_password' => null,
+        'ssl_verify_peer' => false,
+        'ssl_verify_host' => false,
+        'ssl_cafile' => null,
     ),
     $config->apiVersion
 );

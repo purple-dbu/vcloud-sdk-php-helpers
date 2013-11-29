@@ -39,8 +39,7 @@ Usage
 The Right Helper gives you the ability to manipulate user rights with ease. It
 helps you determining the current logged user rights.
 
-#### Determine whether the current user is administrator of his organization, or
-not
+#### Determine whether the current user is administrator of his organization, or not
 
 ```php
 $service = \VMware_VCloud_SDK_Service::getService();
