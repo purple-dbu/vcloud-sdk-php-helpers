@@ -49,12 +49,12 @@ class Service
 
     public function getCurrentUserName()
     {
-        return strtolower($this->service->getSession()->get_user());
+        return $this->service->getSession()->get_user();
     }
 
     public function getCurrentOrganizationName()
     {
-        return strtolower($this->service->getSession()->get_org());
+        return $this->service->getSession()->get_org();
     }
 
     public function getCurrentOrganization()
