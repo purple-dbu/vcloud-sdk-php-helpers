@@ -148,11 +148,11 @@ class Right
         // If we've got a ACCESS_TO_RESOURCE_IS_FORBIDDEN (either while retieving all rights), we're assuming that
         // we the user doesn't have this right
         } catch (\VMware_VCloud_SDK_Exception $e) {
-            // if (Exception::create($e)->getMinorErrorCode() === 'ACCESS_TO_RESOURCE_IS_FORBIDDEN') {
-            //     return false;
-            // } else {
+            if (Exception::create($e)->getMinorErrorCode() === 'ACCESS_TO_RESOURCE_IS_FORBIDDEN') {
+                return false;
+            } else {
                 throw $e; // propagating the exception if this is not the "expected" one
-            // }
+            }
         }
 
         return false;

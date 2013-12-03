@@ -105,4 +105,30 @@ class ServiceTest extends \PHPUnit_Framework_TestCase
             );
         }
     }
+
+    public function testGetCurrentUser()
+    {
+        foreach ($this->config['users'] as $name => $userConfig) {
+            $this->assertEquals(
+                strtolower($userConfig['username']),
+                strtolower(
+                    \VCloud\Helpers\Service::create($this->services[$name])
+                        ->getCurrentUser()->getUser()->get_name()
+                )
+            );
+        }
+    }
+
+    public function testGetCurrentOrganization()
+    {
+        foreach ($this->config['users'] as $name => $userConfig) {
+            $this->assertEquals(
+                strtolower($userConfig['organization']),
+                strtolower(
+                    \VCloud\Helpers\Service::create($this->services[$name])
+                        ->getCurrentOrganization()->getOrg()->get_name()
+                )
+            );
+        }
+    }
 }
