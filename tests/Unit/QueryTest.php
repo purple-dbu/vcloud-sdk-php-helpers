@@ -10,10 +10,10 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        global $service, $config;
+        global $services, $config;
         $this->config = $config;
-        $this->service = $service;
-        $this->queryService = $service->getQueryService();
+        $this->service = $services['cloudAdministrator'];
+        $this->queryService = $services['cloudAdministrator']->getQueryService();
     }
 
     public function testQueryRecords()

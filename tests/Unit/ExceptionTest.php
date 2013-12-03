@@ -5,22 +5,22 @@ namespace Test\VCloud\Helpers\Unit;
 class ExceptionTestCase extends \PHPUnit_Framework_TestCase
 {
     protected $config;
-    protected $service;
+    protected $services;
     protected $e;
     protected $id;
 
     public function setUp()
     {
-        global $service, $config;
+        global $services, $config;
         $this->config = $config;
-        $this->service = $service;
+        $this->services = $services;
         $this->id = $this->config->unknownOrganization;
 
         $reference = new \VMware_VCloud_API_ReferenceType();
         $reference->set_href('https://' . $this->config->host . '/api/org/' . $this->id);
         $reference->set_type('application/vnd.vmware.vcloud.org+xml');
 
-        $unknownOrganization = $service->createSdkObj($reference);
+        $unknownOrganization = $services['cloudAdministrator']->createSdkObj($reference);
 
         try {
             $unknownOrganization->getOrg();
