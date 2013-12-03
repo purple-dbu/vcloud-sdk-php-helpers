@@ -53,4 +53,12 @@ class RightTest extends \PHPUnit_Framework_TestCase
                 ->isCurrentUserOrganizationAdmin()
         );
     }
+
+    public function testIsCurrentUserOrganizationAdminOnLdapOrganizationAdmin()
+    {
+        $this->assertTrue(
+            \VCloud\Helpers\Right::create($this->services['ldapOrganizationAdmin'])
+                ->isCurrentUserOrganizationAdmin()
+        );
+    }
 }

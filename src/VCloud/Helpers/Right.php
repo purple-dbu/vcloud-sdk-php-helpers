@@ -58,6 +58,7 @@ class Right
 
     protected $service;
     protected $currentUserRights;
+    protected $serviceHelper;
     protected $queryHelper;
 
     public function __construct(\VMware_VCloud_SDK_Service $service)
@@ -68,6 +69,14 @@ class Right
     public static function create(\VMware_VCloud_SDK_Service $service)
     {
         return new self($service);
+    }
+
+    protected function getServiceHelper()
+    {
+        if ($this->serviceHelper === null) {
+            $this->serviceHelper = Service::create($this->service);
+        }
+        return $this->serviceHelper;
     }
 
     protected function getQueryHelper()
@@ -129,9 +138,9 @@ class Right
                 $right = $this->getRightByName($right);
             }
 
-            $id = $right->get_id();
-            foreach ($this->getCurrentUserRights() as $r) {
-                if ($r->get_id() === $id) {
+            $id = $this->getServiceHelper()->getId($right);
+            foreach ($this->getCurrentUserRightReferences() as $r) {
+                if ($this->getServiceHelper()->getId($r) === $id) {
                     return true;
                 }
             }
@@ -139,11 +148,50 @@ class Right
         // If we've got a ACCESS_TO_RESOURCE_IS_FORBIDDEN (either while retieving all rights), we're assuming that
         // we the user doesn't have this right
         } catch (\VMware_VCloud_SDK_Exception $e) {
-            if (Exception::create($e)->getMinorErrorCode() === 'ACCESS_TO_RESOURCE_IS_FORBIDDEN') {
-                return false;
-            } else {
+            // if (Exception::create($e)->getMinorErrorCode() === 'ACCESS_TO_RESOURCE_IS_FORBIDDEN') {
+            //     return false;
+            // } else {
                 throw $e; // propagating the exception if this is not the "expected" one
-            }
+            // }
         }
+
+        return false;
+    }
+
+    public function getCurrentUserGroupReferences()
+    {
+        return $this->getCurrentUser()->getUser()->getGroupReferences()->getReference();
+    }
+
+    public function getCurrentUserRoles()
+    {
+        $roles = array();
+        $user = $this->getServiceHelper()->getCurrentUser();
+        if ($user->getUser()->getIsGroupRole()) {
+            foreach ($this->getCurrentUserGroups() as $group) {
+                array_push(
+                    $roles,
+                    $this->service->createSDKObj($group->getGroup()->getRole())
+                );
+            }
+        } else {
+            array_push(
+                $roles,
+                $this->service->createSDKObj($user->getUser()->getRole())
+            );
+        }
+        return $roles;
+    }
+
+    public function getCurrentUserRightReferences()
+    {
+        $rights = array();
+        foreach ($this->getCurrentUserRoles() as $role) {
+            $rights = array_merge(
+                $rights,
+                $role->getRole()->getRightReferences()->getRightReference()
+            );
+        }
+        return $rights;
     }
 }
