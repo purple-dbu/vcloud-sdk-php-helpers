@@ -82,8 +82,9 @@ switch (APPLICATION_ENV) {
     // - if we are generating stubs, create a HTTP Proxy to write the sub files
     // - otherwise, connect to vCloud Director directly
     case 'staging':
+        $client = new Test\HttpProxy\Client();
+        $client->getRequest()->attach(new Test\HttpProxy\Monitor());
         if (PROXY_WRITE_STUBS) {
-            $client = new Test\HttpProxy\Client();
             $client->getRequest()->attach(
                 new Test\HttpProxy\StubWriter(
                     $config->httpProxy->directory,
@@ -109,12 +110,8 @@ foreach ($config->users->toArray() as $id => $credentials) {
 
     $services[$id] = \Cli\Helpers\Job::run(
         'Autenticating as ' . $credentials['username'] . '@' . $credentials['organization'],
-        function ($config, $credentials) {
-
-            $service = isset($client)
-                ? VMware_VCloud_SDK_Service::getService($client)
-                : VMware_VCloud_SDK_Service::getService();
-
+        function ($config, $credentials, $client) {
+            $service = VMware_VCloud_SDK_Service::getService($client);
             $service->login(
                 $config->host,
                 array(
@@ -132,32 +129,31 @@ foreach ($config->users->toArray() as $id => $credentials) {
                 ),
                 $config->apiVersion
             );
-
             return $service;
         },
-        array($config, $credentials)
+        array($config, $credentials, clone $client)
     );
+
 }
 
-// TODO remove (legacy)
-$service = isset($client)
-    ? VMware_VCloud_SDK_Service::getService($client)
-    : VMware_VCloud_SDK_Service::getService();
 
-$service->login(
-    $config->host,
-    array(
-        'username' => $config->users->administrator->username . '@' . $config->users->administrator->organization,
-        'password' => $config->users->administrator->password,
-    ),
-    array(
-        'proxy_host' => null,
-        'proxy_port' => null,
-        'proxy_user' => null,
-        'proxy_password' => null,
-        'ssl_verify_peer' => false,
-        'ssl_verify_host' => false,
-        'ssl_cafile' => null,
-    ),
-    $config->apiVersion
-);
+// TODO remove (legacy)
+// $service = VMware_VCloud_SDK_Service::getService($client);
+
+// $service->login(
+//     $config->host,
+//     array(
+//         'username' => $config->users->administrator->username . '@' . $config->users->administrator->organization,
+//         'password' => $config->users->administrator->password,
+//     ),
+//     array(
+//         'proxy_host' => null,
+//         'proxy_port' => null,
+//         'proxy_user' => null,
+//         'proxy_password' => null,
+//         'ssl_verify_peer' => false,
+//         'ssl_verify_host' => false,
+//         'ssl_cafile' => null,
+//     ),
+//     $config->apiVersion
+// );
