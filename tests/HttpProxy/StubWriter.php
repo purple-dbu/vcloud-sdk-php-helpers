@@ -74,6 +74,15 @@ class StubWriter implements \SplObserver
             $url = str_replace($host, $replacement, $url);
         }
 
+        // Remove password from Authorization header, so password in config.php
+        // and config.php.dist don't have do be the same
+        if (array_key_exists('authorization', $realHeaders)) {
+            if (preg_match('/^Basic (.*)$/', $realHeaders['authorization'], $authMatches)) {
+                preg_match('/^(.*):(.*)$/', base64_decode($authMatches[1]), $credentials);
+                $realHeaders['authorization'] = 'Basic ' . base64_encode($credentials[1] . ":");
+            }
+        }
+
         return Json::prettyPrint(
             Json::encode(array($url, $method, $realHeaders, $body))
         );
