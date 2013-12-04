@@ -114,7 +114,7 @@ class Query
      * @param string $type   The query type
      * @param string $filter The query filter
      * @param int    $page   The page to retrieve
-     * @return VMware_VCloud_API_QueryResultRecordType|boolean Returns the first
+     * @return \VMware_VCloud_API_QueryResultRecordType|boolean Returns the first
      * record of the query, or false if there isn't any result.
      */
     public function queryRecord($type, $filter = null)
@@ -168,7 +168,7 @@ class Query
      * @param string $type   The query type
      * @param string $filter The query filter
      * @param int    $page   The page to retrieve
-     * @return VMware_VCloud_API_QueryResultReferenceType|boolean Returns the first
+     * @return \VMware_VCloud_API_QueryResultReferenceType|boolean Returns the first
      * reference of the query, or false if there isn't any result.
      */
     public function queryReference($type, $filter = null)
