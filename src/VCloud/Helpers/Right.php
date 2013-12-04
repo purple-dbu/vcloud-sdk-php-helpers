@@ -160,7 +160,16 @@ class Right
 
     public function getCurrentUserGroupReferences()
     {
-        return $this->getCurrentUser()->getUser()->getGroupReferences()->getReference();
+        return $this->getServiceHelper()->getCurrentUser()->getUser()->getGroupReferences()->getGroupReference();
+    }
+
+    public function getCurrentUserGroups()
+    {
+        $groups = array();
+        foreach ($this->getCurrentUserGroupReferences() as $ref) {
+            array_push($groups, $this->service->createSDKObj($ref));
+        }
+        return $groups;
     }
 
     public function getCurrentUserRoles()
