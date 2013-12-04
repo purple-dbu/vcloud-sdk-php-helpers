@@ -19,7 +19,7 @@
     <php>
         <!-- See `tests/config.php` -->
         <const name="APPLICATION_ENV" value="staging"/>
-        <const name="PROXY_WRITE_STUBS" value="false"/>
+        <const name="PROXY_WRITE_STUBS" value="true"/>
     </php>
 
     <filter>
