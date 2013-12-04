@@ -3,13 +3,11 @@ return array(
     'httpProxy' => array(
         'directory' => __DIR__ . '/_files',
         'hosts' => array(
-            'my-vcd-host' => 'vcloud-director',
+            'vcloud.local' => 'vcloud-director',
         ),
         'excludeRequestHeaders' => array(
             'accept',
             'user-agent',
-            'authorization',
-            'x-vcloud-authorization',
         ),
         'excludeResponseHeaders' => array(
             'date',
@@ -19,19 +17,12 @@ return array(
             'connection',
         ),
     ),
-    'host' => 'my-vcd-host',
-    'apiVersion' => '5.5',
-    'users' => array(
-        'administrator' => array(
-            'organization' => 'system',
-            'username' => 'administrator',
-            'password' => '********'
-        ),
-    ),
+    'host' => 'vcloud.local',
+    'apiVersion' => '5.1',
     'unknownOrganization' => 'a7baacbe-8a59-4286-b8c9-694153bf9e76',
     'knownUser' => '23d6deb1-1778-4325-8289-2f150d122674',
     'unknownUser' => '23d6deb1-1778-4325-8289-2f150d122675',
-    'totalUsers' => 87,
+    'totalUsers' => 91,
     'queryPageSize' => 50,
     'metadata' => array(
         'type' => 'adminVAppTemplate',
@@ -41,16 +32,48 @@ return array(
         'countWithValue' => 1,
         'countWithoutValue' => 2,
     ),
+    'users' => array(
+        'cloudAdministrator' => array(
+            'organization' => 'system',
+            'username' => 'Administrator',
+            'password' => '********',
+        ),
+        'organizationAdministrator' => array(
+            'organization' => 'Testing',
+            'username' => 'OrgAdmin',
+            'password' => '********',
+        ),
+        'vAppAuthor' => array(
+            'organization' => 'testing',
+            'username' => 'vAppAuthor',
+            'password' => '********',
+        ),
+        'consoleOnly' => array(
+            'organization' => 'testing',
+            'username' => 'ConsoleOnly',
+            'password' => '********',
+        ),
+        'sandboxServiceUser' => array(
+            'organization' => 'testing',
+            'username' => 'SandboxUser',
+            'password' => '********',
+        ),
+        'ldapOrganizationAdmin' => array(
+            'organization' => 'testing',
+            'username' => 'AMercier',
+            'password' => '********',
+        ),
+    ),
     'data' => array(
         'service' => array(
             'sampleUserObject' => array(
                 'type' => 'org',
-                'href' => 'https://vcd-demo.ecocenter.fr/api/org/a7baacbe-8a59-4286-b8c9-694153bf9e75',
+                'href' => 'https://vcloud.local/api/org/a7baacbe-8a59-4286-b8c9-694153bf9e75',
                 'name' => 'ECV',
             ),
             'sampleAdminObject' => array(
                 'type' => 'adminUser',
-                'href' => 'https://vcd-demo.ecocenter.fr/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674',
+                'href' => 'https://vcloud.local/api/admin/user/23d6deb1-1778-4325-8289-2f150d122674',
                 'name' => 'yconan',
             )
         ),
