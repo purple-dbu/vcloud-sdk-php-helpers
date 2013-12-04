@@ -36,13 +36,14 @@
         "pear-pear/HTTP_Request2": "2.1.*"
     },
     "require-dev": {
+        "amercier/cli-helpers": "1.3.*",
+        "pear-pear/Log": "1.12.*",
+        "pear-pear/PHP_CodeSniffer": "1.4.*",
+        "phpdocumentor/phpdocumentor": "2.1.0",
         "phpunit/phpunit": "3.7.*",
         "satooshi/php-coveralls": "0.6.*",
-        "pear-pear/PHP_CodeSniffer": "1.4.*",
-        "pear-pear/Log": "1.12.*",
         "zendframework/zend-config": "2.2.*",
         "zendframework/zend-json": "2.2.*",
-        "zendframework/zend-loader": "2.2.*",
-        "amercier/cli-helpers": "1.3.*"
+        "zendframework/zend-loader": "2.2.*"
     }
 }

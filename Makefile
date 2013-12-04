@@ -1,5 +1,7 @@
 EXT := $$(echo $$OS | egrep ^Windows >/dev/null && echo -n .bat)
 
+DOC := docs
+
 SHOW_COVERAGE = \
 	[ -e build/logs/coverage.txt ] \
 	&& echo \
@@ -9,6 +11,7 @@ SHOW_COVERAGE = \
 
 
 all: dependencies
+	make test && make docs
 
 
 # ==============================================================================
@@ -94,3 +97,15 @@ stubs: vendor
 	# ┌─────────────────┐
 	# │ Generated stubs │
 	# └─────────────────┘
+
+doc: vendor src
+	[ ! -d "$(DOC)" ] || rm -Rf "$(DOC)"
+	mkdir -p "$(DOC)"
+	vendor/bin/phpdoc.php \
+		--directory src/ \
+		--target "$(DOC)" \
+		--title "vCloud PHP SDK Helpers" \
+		--template responsive-twig
+	# ┌─────────────────────────────┐
+	# │ Documentation is up-to-date │
+	# └─────────────────────────────┘
