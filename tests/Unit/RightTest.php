@@ -61,4 +61,13 @@ class RightTest extends \PHPUnit_Framework_TestCase
                 ->isCurrentUserOrganizationAdmin()
         );
     }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testGetUnexistingRight()
+    {
+        \VCloud\Helpers\Right::create($this->services['cloudAdministrator'])
+            ->getRightByName($this->config['right']['unexistingRightName']);
+    }
 }

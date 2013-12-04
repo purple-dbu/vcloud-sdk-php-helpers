@@ -154,8 +154,6 @@ class Right
                 throw $e; // propagating the exception if this is not the "expected" one
             }
         }
-
-        return false;
     }
 
     public function getCurrentUserGroupReferences()

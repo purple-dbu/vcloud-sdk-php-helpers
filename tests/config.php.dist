@@ -77,5 +77,8 @@ return array(
                 'name' => 'yconan',
             )
         ),
+        'right' => array(
+            'unexistingRightName' => 'Tu peux pas test',
+        ),
     ),
 );
