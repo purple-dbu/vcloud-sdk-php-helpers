@@ -21,6 +21,7 @@ class Service
     /**
      * Create a new Service Helper
      * @param \VMware_VCloud_SDK_Service $service The vCloud Director SDK Service
+     * @return Service Returns a new Service Handler
      */
     public function __construct(\VMware_VCloud_SDK_Service $service)
     {

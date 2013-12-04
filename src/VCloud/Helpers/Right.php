@@ -103,6 +103,7 @@ class Right
      *     new (\VCloud\Helpers\Right($service))->queryRecords(...)
      *
      * @param \VMware_VCloud_SDK_Service $service The vCloud Director SDK Service
+     * @return Right Returns a new Right Handler
      */
     public static function create(\VMware_VCloud_SDK_Service $service)
     {

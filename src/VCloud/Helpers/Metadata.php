@@ -34,6 +34,7 @@ class Metadata
      *     new (\VCloud\Helpers\Metadata($service))->queryRecords(...)
      *
      * @param \VMware_VCloud_SDK_Service $service The vCloud Director SDK Service
+     * @return Metadata Returns a new Metadata Handler
      */
     public static function create(\VMware_VCloud_SDK_Service $service)
     {
