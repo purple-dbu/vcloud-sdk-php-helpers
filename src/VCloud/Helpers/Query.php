@@ -1,4 +1,8 @@
 <?php
+/**
+ * vCloud PHP SDK Helpers
+ * @link (Github, https://github.com/amercier/vcloud-sdk-php)
+ */
 
 namespace VCloud\Helpers;
 

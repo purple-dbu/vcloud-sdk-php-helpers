@@ -1,4 +1,8 @@
 <?php
+/**
+ * vCloud PHP SDK Helpers
+ * @link (Github, https://github.com/amercier/vcloud-sdk-php)
+ */
 
 namespace VCloud\Helpers;
 
@@ -21,7 +25,14 @@ namespace VCloud\Helpers;
  */
 class Exception
 {
+    /**
+     * @var \Exception The original exception
+     */
     protected $originalException;
+
+    /**
+     * @var \SimpleXMLElement The parsed error message
+     */
     protected $document;
 
     /**
