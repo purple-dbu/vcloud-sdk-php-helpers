@@ -2,8 +2,15 @@
 
 namespace VCloud\Helpers;
 
+/**
+ * The Right Helper gives you the ability to manipulate user rights with ease. It
+ * helps you determining the current logged user rights.
+ */
 class Right
 {
+    /**
+     * Rights bundled with vCloud Director
+     */
     const CATALOG_ADD_VAPP_FROM_MY_CLOUD = 'Catalog: Add vApp from My Cloud';
     const CATALOG_CHANGE_OWNER = 'Catalog: Change Owner';
     const CATALOG_CREATE_DELETE_A_CATALOG = 'Catalog: Create / Delete a Catalog';
@@ -56,21 +63,56 @@ class Right
     const VAPP_SNAPSHOT_OPERATIONS = 'vApp: Snapshot Operations';
     const VAPP_USE_CONSOLE = 'vApp: Use Console';
 
+    /**
+     * @var \VMware_VCloud_SDK_Service vCloud Director SDK Service
+     */
     protected $service;
+
+    /**
+     * @var array Cached current user rights
+     */
     protected $currentUserRights;
+
+    /**
+     * @var Service Cached service helper
+     */
     protected $serviceHelper;
+
+    /**
+     * @var Query Cached query helper
+     */
     protected $queryHelper;
 
+    /**
+     * Create a new Right Helper
+     * @param \VMware_VCloud_SDK_Service $service The vCloud Director SDK Service
+     */
     public function __construct(\VMware_VCloud_SDK_Service $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * Create a new Right Helper and returns it without modifications. This
+     * form allow chaining in ALL versions of PHP:
+     *
+     *     \VCloud\Helpers\Right::create($service)->queryRecords(...)
+     *
+     * Since PHP 5.4, Class member access on instantiation is allowed:
+     *
+     *     new (\VCloud\Helpers\Right($service))->queryRecords(...)
+     *
+     * @param \VMware_VCloud_SDK_Service $service The vCloud Director SDK Service
+     */
     public static function create(\VMware_VCloud_SDK_Service $service)
     {
         return new self($service);
     }
 
+    /**
+     * Get the cached Service helper, or create it
+     * @return Service Return the Service helper associated with this helper
+     */
     protected function getServiceHelper()
     {
         if ($this->serviceHelper === null) {
@@ -79,6 +121,10 @@ class Right
         return $this->serviceHelper;
     }
 
+    /**
+     * Get the cached Query helper, or create it
+     * @return Query Return the Query helper associated with this helper
+     */
     protected function getQueryHelper()
     {
         if ($this->queryHelper === null) {
@@ -87,6 +133,17 @@ class Right
         return $this->queryHelper;
     }
 
+    /**
+     * Determine whether the currently logged user is an "Organization
+     * Administrator". An "Organization Administrator" is a user with the
+     * following rights:
+     *
+     *   - General: Administrator Control
+     *   - General: Administrator View
+     *
+     * @return Returns `true` if the currently logged user is an "Organization
+     * Administrator", `false` otherwise.
+     */
     public function isCurrentUserOrganizationAdmin()
     {
         return $this->hasCurrentUserRights(
@@ -97,11 +154,22 @@ class Right
         );
     }
 
+    /**
+     * Get all existing rights
+     *
+     * @return array Returns all rights registered in vCloud Director
+     */
     public function getAllRights()
     {
         return $this->getQueryHelper()->queryRecords(\VMware_VCloud_SDK_Query_Types::RIGHT);
     }
 
+    /**
+     * Find a right by its name
+     *
+     * @param string $name The name of the right to look for
+     * @return array Returns all rights registered in vCloud Director
+     */
     public function getRightByName($name)
     {
         foreach ($this->getAllRights() as $right) {
@@ -121,6 +189,14 @@ class Right
         );
     }
 
+    /**
+     * Determine whether the currently logged user has all the given rights or
+     * not
+     *
+     * @param array $rights The rights to look for (array of VMware_VCloud_API_QueryResultRightRecordType)
+     * @return boolean Returns `true` if the currently logged user has ALL the
+     * given rights
+     */
     public function hasCurrentUserRights($rights)
     {
         foreach ($rights as $right) {
@@ -131,6 +207,13 @@ class Right
         return true;
     }
 
+    /**
+     * Determine whether the currently logged user has a given right or not
+     *
+     * @param \VMware_VCloud_API_QueryResultRightRecordType $right The rights to look for
+     * @return boolean Returns `true` if the currently logged user has the given
+     * right
+     */
     public function hasCurrentUserRight($right)
     {
         try {
@@ -156,11 +239,21 @@ class Right
         }
     }
 
+    /**
+     * Get the currently logged user's group references
+     *
+     * @return array Returns an array of \VMware_VCloud_API_ReferenceType objects
+     */
     public function getCurrentUserGroupReferences()
     {
         return $this->getServiceHelper()->getCurrentUser()->getUser()->getGroupReferences()->getGroupReference();
     }
 
+    /**
+     * Get the currently logged user's groups
+     *
+     * @return array Returns an array of \VMware_VCloud_SDK_Group objects
+     */
     public function getCurrentUserGroups()
     {
         $groups = array();
@@ -170,6 +263,11 @@ class Right
         return $groups;
     }
 
+    /**
+     * Get the currently logged user's roles
+     *
+     * @return array Returns an array of \VMware_VCloud_SDK_Role objects
+     */
     public function getCurrentUserRoles()
     {
         $roles = array();
@@ -190,6 +288,11 @@ class Right
         return $roles;
     }
 
+    /**
+     * Get the currently logged user's right references
+     *
+     * @return array Returns an array of \VMware_VCloud_API_ReferenceType objects
+     */
     public function getCurrentUserRightReferences()
     {
         $rights = array();
