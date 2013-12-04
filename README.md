@@ -7,7 +7,7 @@ Utility classes for vCloud Director PHP SDK
 [![Coverage Status](https://coveralls.io/repos/purple-dbu/vcloud-sdk-php-helpers/badge.png?branch=master)](https://coveralls.io/r/purple-dbu/vcloud-sdk-php-helpers?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/527fc4d8632bac824100002d/badge.png)](https://www.versioneye.com/user/projects/527fc4d8632bac824100002d)
 
-[![Latest Unstable Version](https://poser.pugx.org/purple-dbu/vcloud-sdk-helpers/v/unstable.png)](https://packagist.org/packages/purple-dbu/vcloud-sdk-helpers)
+[![Latest Stable Version](https://poser.pugx.org/purple-dbu/vcloud-sdk-helpers/v/stable.png)](https://packagist.org/packages/purple-dbu/vcloud-sdk-helpers)
 
 Installation
 ------------
