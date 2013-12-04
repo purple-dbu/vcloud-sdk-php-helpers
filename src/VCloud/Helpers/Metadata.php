@@ -60,13 +60,14 @@ class Metadata
     }
 
     /**
-     * Determine whether a vCloud object contains a metadata having a given name, and optionally, a given value.
+     * Determine whether a vCloud object contains a metadata having a given name,
+     * and optionally, a given value.
      *
      * @param mixed  $object        The vCloud object to test
      * @param string $metadataName  The expected name
      * @param string $metadataValue The expected value (optional)
-     * @return boolean Returns `true` if the object contains a metadata with the expected name (and the expected value,
-     * if given)
+     * @return boolean Returns `true` if the object contains a metadata with the
+     * expected name (and the expected value, if given)
      */
     protected static function doesObjectMatch($object, $metadataName, $metadataValue)
     {
@@ -79,13 +80,14 @@ class Metadata
     }
 
     /**
-     * Get all object of a given type containing a metadata having a given name, and optionally, a given value.
+     * Get all object of a given type containing a metadata having a given name,
+     * and optionally, a given value.
      *
      * @param string $type           The expected query type, see Query helper
      * @param string $metadataName   The expected name
      * @param string $metadataValue  The expected value (optional)
-     * @return boolean Returns `true` if the object contains a metadata with the expected name (and the expected value,
-     * if given)
+     * @return array Returns all objects containing a metadata with the expected
+     * name (and the expected value, if given)
      */
     public function getObjects($type, $metadataName, $metadataValue = null)
     {
@@ -100,6 +102,16 @@ class Metadata
         return $objects;
     }
 
+    /**
+     * Get the first object of a given type containing a metadata having a given
+     * name, and optionally, a given value.
+     *
+     * @param string $type           The expected query type, see Query helper
+     * @param string $metadataName   The expected name
+     * @param string $metadataValue  The expected value (optional)
+     * @return mixed Returns the first objects containing a metadata with the
+     * expected name (and the expected value, if given)
+     */
     public function getObject($type, $metadataName, $metadataValue = null)
     {
         $queryHelper = new Query($this->service->getQueryService());
