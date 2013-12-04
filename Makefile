@@ -54,7 +54,7 @@ clean:
 # ==============================================================================
 
 # Linting
-lint: all
+lint: dependencies
 	vendor/bin/phpcs$(EXT) --standard=PSR1 src/ tests/ \
 	&& vendor/bin/phpcs$(EXT) --standard=PSR2 src/ tests/
 
@@ -70,7 +70,7 @@ tests/_files: tests/_files.tar.gz
 	tar xvfz tests/_files.tar.gz -C tests/_files
 
 # Unit tests (using stubs)
-test: vendor tests/_files
+test: dependencies tests/_files
 	make lint \
 	&& vendor/bin/phpunit$(EXT) \
 		--coverage-html build/logs/coverage \
@@ -79,7 +79,7 @@ test: vendor tests/_files
 	&& $(SHOW_COVERAGE)
 
 # Integration tests
-integration: vendor
+integration: dependencies
 	make lint \
 	&& vendor/bin/phpunit$(EXT) \
 		--coverage-html build/logs/coverage \
@@ -87,7 +87,7 @@ integration: vendor
 		--configuration phpunit-integration.xml \
 
 # Stubs (tests/_files.tar.gz) generation
-stubs: vendor
+stubs: dependencies
 	[ ! -d tests/_files ] || rm -Rf tests/_files \
 	&& [ ! -e tests/_files.tar.gz ] || rm -Rf tests/_files.tar.gz \
 	&& make lint \
@@ -98,7 +98,17 @@ stubs: vendor
 	# │ Generated stubs │
 	# └─────────────────┘
 
-doc: vendor src
+
+# ==============================================================================
+# Documentation
+# ==============================================================================
+
+doc: $(DOC)
+	# ┌─────────────────────────────┐
+	# │ Documentation is up-to-date │
+	# └─────────────────────────────┘
+
+$(DOC): dependencies src
 	[ ! -d "$(DOC)" ] || rm -Rf "$(DOC)"
 	mkdir -p "$(DOC)"
 	vendor/bin/phpdoc.php \
@@ -106,6 +116,4 @@ doc: vendor src
 		--target "$(DOC)" \
 		--title "vCloud PHP SDK Helpers" \
 		--template responsive-twig
-	# ┌─────────────────────────────┐
-	# │ Documentation is up-to-date │
-	# └─────────────────────────────┘
+	touch docs
