@@ -45,9 +45,9 @@ helps you determining the current logged user rights.
 $service = \VMware_VCloud_SDK_Service::getService();
 $service->login(...);
 
-\VCloud\Helpers\Right::create($service)->isOrganizationAdmin();
+\VCloud\Helpers\Right::create($service)->isCurrentUserOrganizationAdmin();
 
-// => true|false depending on user rights
+// => true|false depending on currently logged user rights
 ```
 
 
