@@ -34,6 +34,8 @@ is to add this to your `composer.json`:
 Usage
 -----
 
+For full usage instructions, please read the [API Documentation](http://purple-dbu.github.io/vcloud-sdk-php-helpers/).
+
 
 ### Right Helper
 
@@ -210,5 +212,17 @@ To start contributing, the best is to follow these steps:
 4. Go to the project's root directory: `cd vcloud-sdk-php-helpers`
 5. Create the file _tests/config.php_: `cp tests/config.php.dist tests/config.php`
 6. Edit `tests/config.php` and set values according to your vCloud Director configuration
-7. Install dependencies: `make`
+7. Install dependencies: `make dependencies`
 8. Run tests: `make test`
+
+
+### Common tasks
+
+- Update dependencies: `make dependencies`
+- Clean dependencies: `make clean`
+- Check code quality: `make lint`
+- Run integration tests: `make integration`
+- Generate stubs for unit tests: `make stubs`
+- Run unit tests: `make test`
+- Generate API documentation: `make doc`
+- Publish API documentation: `make publish`
