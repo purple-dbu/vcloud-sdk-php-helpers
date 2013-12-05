@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <meta charset="utf-8"/>
+    <title>    vCloud PHP SDK Helpers &raquo; \VCloud\Helpers\Right
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">vCloud PHP SDK Helpers</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                    <li><a>Namespaces</a></li>
+                                                                        <li><a href="../namespaces/VCloud.html">VCloud</a></li>
+                                                                                                                                </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Create a new Right Helper">
+            <span class="description">Create a new Right Helper</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_create" title="create :: Create a new Right Helper and returns it without modifications. This
+form allow chaining in ALL versions of PHP:">
+            <span class="description">Create a new Right Helper and returns it without modifications. This
+form allow chaining in ALL versions of PHP:</span><pre>create</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                        <li class="method public">
+        <a href="#method_isCurrentUserOrganizationAdmin" title="isCurrentUserOrganizationAdmin :: Determine whether the currently logged user is an &quot;Organization
+Administrator&quot;. An &quot;Organization Administrator&quot; is a user with the
+following rights:">
+            <span class="description">Determine whether the currently logged user is an &quot;Organization
+Administrator&quot;. An &quot;Organization Administrator&quot; is a user with the
+following rights:</span><pre>isCurrentUserOrganizationAdmin</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getAllRights" title="getAllRights :: Get all existing rights">
+            <span class="description">Get all existing rights</span><pre>getAllRights</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRightByName" title="getRightByName :: Find a right by its name">
+            <span class="description">Find a right by its name</span><pre>getRightByName</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_hasCurrentUserRights" title="hasCurrentUserRights :: Determine whether the currently logged user has all the given rights or
+not">
+            <span class="description">Determine whether the currently logged user has all the given rights or
+not</span><pre>hasCurrentUserRights</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_hasCurrentUserRight" title="hasCurrentUserRight :: Determine whether the currently logged user has a given right or not">
+            <span class="description">Determine whether the currently logged user has a given right or not</span><pre>hasCurrentUserRight</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCurrentUserGroupReferences" title="getCurrentUserGroupReferences :: Get the currently logged user&#039;s group references">
+            <span class="description">Get the currently logged user&#039;s group references</span><pre>getCurrentUserGroupReferences</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCurrentUserGroups" title="getCurrentUserGroups :: Get the currently logged user&#039;s groups">
+            <span class="description">Get the currently logged user&#039;s groups</span><pre>getCurrentUserGroups</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCurrentUserRoles" title="getCurrentUserRoles :: Get the currently logged user&#039;s roles">
+            <span class="description">Get the currently logged user&#039;s roles</span><pre>getCurrentUserRoles</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCurrentUserRightReferences" title="getCurrentUserRightReferences :: Get the currently logged user&#039;s right references">
+            <span class="description">Get the currently logged user&#039;s right references</span><pre>getCurrentUserRightReferences</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                    <li class="method protected">
+                            <a href="#method_getServiceHelper" title="getServiceHelper :: Get the cached Service helper, or create it">
+                                <span class="description">Get the cached Service helper, or create it</span><pre>getServiceHelper</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method_getQueryHelper" title="getQueryHelper :: Get the cached Query helper, or create it">
+                                <span class="description">Get the cached Query helper, or create it</span><pre>getQueryHelper</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_ADD_VAPP_FROM_MY_CLOUD" title="CATALOG_ADD_VAPP_FROM_MY_CLOUD :: Rights bundled with vCloud Director">
+                        <span class="description">Rights bundled with vCloud Director</span><pre>CATALOG_ADD_VAPP_FROM_MY_CLOUD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_CHANGE_OWNER" title="CATALOG_CHANGE_OWNER :: ">
+                        <span class="description"></span><pre>CATALOG_CHANGE_OWNER</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_CREATE_DELETE_A_CATALOG" title="CATALOG_CREATE_DELETE_A_CATALOG :: ">
+                        <span class="description"></span><pre>CATALOG_CREATE_DELETE_A_CATALOG</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_EDIT_PROPERTIES" title="CATALOG_EDIT_PROPERTIES :: ">
+                        <span class="description"></span><pre>CATALOG_EDIT_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_PUBLISH" title="CATALOG_PUBLISH :: ">
+                        <span class="description"></span><pre>CATALOG_PUBLISH</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_SHARING" title="CATALOG_SHARING :: ">
+                        <span class="description"></span><pre>CATALOG_SHARING</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS" title="CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS :: ">
+                        <span class="description"></span><pre>CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_CATALOG_VIEW_PUBLISHED_CATALOGS" title="CATALOG_VIEW_PUBLISHED_CATALOGS :: ">
+                        <span class="description"></span><pre>CATALOG_VIEW_PUBLISHED_CATALOGS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DISK_CREATE" title="DISK_CREATE :: ">
+                        <span class="description"></span><pre>DISK_CREATE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DISK_DELETE" title="DISK_DELETE :: ">
+                        <span class="description"></span><pre>DISK_DELETE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DISK_EDIT_PROPERTIES" title="DISK_EDIT_PROPERTIES :: ">
+                        <span class="description"></span><pre>DISK_EDIT_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_DISK_VIEW_PROPERTIES" title="DISK_VIEW_PROPERTIES :: ">
+                        <span class="description"></span><pre>DISK_VIEW_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_GENERAL_ADMINISTRATOR_CONTROL" title="GENERAL_ADMINISTRATOR_CONTROL :: ">
+                        <span class="description"></span><pre>GENERAL_ADMINISTRATOR_CONTROL</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_GENERAL_ADMINISTRATOR_VIEW" title="GENERAL_ADMINISTRATOR_VIEW :: ">
+                        <span class="description"></span><pre>GENERAL_ADMINISTRATOR_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_GENERAL_SEND_NOTIFICATION" title="GENERAL_SEND_NOTIFICATION :: ">
+                        <span class="description"></span><pre>GENERAL_SEND_NOTIFICATION</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_GROUP_USER_VIEW" title="GROUP_USER_VIEW :: ">
+                        <span class="description"></span><pre>GROUP_USER_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_NETWORK_EDIT_PROPERTIES" title="ORGANIZATION_NETWORK_EDIT_PROPERTIES :: ">
+                        <span class="description"></span><pre>ORGANIZATION_NETWORK_EDIT_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_NETWORK_VIEW" title="ORGANIZATION_NETWORK_VIEW :: ">
+                        <span class="description"></span><pre>ORGANIZATION_NETWORK_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES" title="ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES :: ">
+                        <span class="description"></span><pre>ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES" title="ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES :: ">
+                        <span class="description"></span><pre>ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_VDC_NETWORK_VIEW" title="ORGANIZATION_VDC_NETWORK_VIEW :: ">
+                        <span class="description"></span><pre>ORGANIZATION_VDC_NETWORK_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT" title="ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT :: ">
+                        <span class="description"></span><pre>ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_VDC_VIEW" title="ORGANIZATION_VDC_VIEW :: ">
+                        <span class="description"></span><pre>ORGANIZATION_VDC_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_EDIT_FEDERATION_SETTINGS" title="ORGANIZATION_EDIT_FEDERATION_SETTINGS :: ">
+                        <span class="description"></span><pre>ORGANIZATION_EDIT_FEDERATION_SETTINGS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_EDIT_LEASES_POLICY" title="ORGANIZATION_EDIT_LEASES_POLICY :: ">
+                        <span class="description"></span><pre>ORGANIZATION_EDIT_LEASES_POLICY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_EDIT_PASSWORD_POLICY" title="ORGANIZATION_EDIT_PASSWORD_POLICY :: ">
+                        <span class="description"></span><pre>ORGANIZATION_EDIT_PASSWORD_POLICY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_EDIT_PROPERTIES" title="ORGANIZATION_EDIT_PROPERTIES :: ">
+                        <span class="description"></span><pre>ORGANIZATION_EDIT_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_EDIT_QUOTAS_POLICY" title="ORGANIZATION_EDIT_QUOTAS_POLICY :: ">
+                        <span class="description"></span><pre>ORGANIZATION_EDIT_QUOTAS_POLICY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_EDIT_SMTP_SETTINGS" title="ORGANIZATION_EDIT_SMTP_SETTINGS :: ">
+                        <span class="description"></span><pre>ORGANIZATION_EDIT_SMTP_SETTINGS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_ORGANIZATION_VIEW" title="ORGANIZATION_VIEW :: ">
+                        <span class="description"></span><pre>ORGANIZATION_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_TEMPLATE_MEDIA_COPY" title="VAPP_TEMPLATE_MEDIA_COPY :: ">
+                        <span class="description"></span><pre>VAPP_TEMPLATE_MEDIA_COPY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD" title="VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD :: ">
+                        <span class="description"></span><pre>VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_TEMPLATE_MEDIA_EDIT" title="VAPP_TEMPLATE_MEDIA_EDIT :: ">
+                        <span class="description"></span><pre>VAPP_TEMPLATE_MEDIA_EDIT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_TEMPLATE_MEDIA_VIEW" title="VAPP_TEMPLATE_MEDIA_VIEW :: ">
+                        <span class="description"></span><pre>VAPP_TEMPLATE_MEDIA_VIEW</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_TEMPLATE_CHECKOUT" title="VAPP_TEMPLATE_CHECKOUT :: ">
+                        <span class="description"></span><pre>VAPP_TEMPLATE_CHECKOUT</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_TEMPLATE_DOWNLOAD" title="VAPP_TEMPLATE_DOWNLOAD :: ">
+                        <span class="description"></span><pre>VAPP_TEMPLATE_DOWNLOAD</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_CHANGE_OWNER" title="VAPP_CHANGE_OWNER :: ">
+                        <span class="description"></span><pre>VAPP_CHANGE_OWNER</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_COPY" title="VAPP_COPY :: ">
+                        <span class="description"></span><pre>VAPP_COPY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_CREATE_RECONFIGURE" title="VAPP_CREATE_RECONFIGURE :: ">
+                        <span class="description"></span><pre>VAPP_CREATE_RECONFIGURE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_DELETE" title="VAPP_DELETE :: ">
+                        <span class="description"></span><pre>VAPP_DELETE</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_EDIT_PROPERTIES" title="VAPP_EDIT_PROPERTIES :: ">
+                        <span class="description"></span><pre>VAPP_EDIT_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_EDIT_VM_CPU" title="VAPP_EDIT_VM_CPU :: ">
+                        <span class="description"></span><pre>VAPP_EDIT_VM_CPU</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_EDIT_VM_HARD_DISK" title="VAPP_EDIT_VM_HARD_DISK :: ">
+                        <span class="description"></span><pre>VAPP_EDIT_VM_HARD_DISK</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_EDIT_VM_MEMORY" title="VAPP_EDIT_VM_MEMORY :: ">
+                        <span class="description"></span><pre>VAPP_EDIT_VM_MEMORY</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_EDIT_VM_NETWORK" title="VAPP_EDIT_VM_NETWORK :: ">
+                        <span class="description"></span><pre>VAPP_EDIT_VM_NETWORK</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_EDIT_VM_PROPERTIES" title="VAPP_EDIT_VM_PROPERTIES :: ">
+                        <span class="description"></span><pre>VAPP_EDIT_VM_PROPERTIES</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_MANAGE_VM_PASSWORD_SETTINGS" title="VAPP_MANAGE_VM_PASSWORD_SETTINGS :: ">
+                        <span class="description"></span><pre>VAPP_MANAGE_VM_PASSWORD_SETTINGS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_POWER_OPERATIONS" title="VAPP_POWER_OPERATIONS :: ">
+                        <span class="description"></span><pre>VAPP_POWER_OPERATIONS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_SHARING" title="VAPP_SHARING :: ">
+                        <span class="description"></span><pre>VAPP_SHARING</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_SNAPSHOT_OPERATIONS" title="VAPP_SNAPSHOT_OPERATIONS :: ">
+                        <span class="description"></span><pre>VAPP_SNAPSHOT_OPERATIONS</pre>
+                    </a>
+                </li>
+                                <li class="constant ">
+                    <a href="#constant_VAPP_USE_CONSOLE" title="VAPP_USE_CONSOLE :: ">
+                        <span class="description"></span><pre>VAPP_USE_CONSOLE</pre>
+                    </a>
+                </li>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>Right</h1>
+                <small style="display: block; text-align: right">
+                                                        </small>
+                <p class="short_description">The Right Helper gives you the ability to manipulate user rights with ease. It
+helps you determining the current logged user rights.</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+
+                    </div>
+                    <table class="table table-bordered">
+                                                                                                                                                                                                        </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Create a new Right Helper</h2>
+                            <pre>__construct(\VMware_VCloud_SDK_Service $service) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$service</h4>
+                                                <code>\VMware_VCloud_SDK_Service</code><p><p>The vCloud Director SDK Service</p>
+</p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_create"></a>
+                        <div class="element clickable method public  method_create" data-toggle="collapse" data-target=".method_create .collapse">
+                            <h2>Create a new Right Helper and returns it without modifications. This
+form allow chaining in ALL versions of PHP:</h2>
+                            <pre>create(\VMware_VCloud_SDK_Service $service) : \VCloud\Helpers\Right</pre>
+                            <div class="labels">
+                                                                <span class="label">static</span>                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>\VCloud\Helpers\Right::create($service)->queryRecords(...)</p>
+
+<p>Since PHP 5.4, Class member access on instantiation is allowed:</p>
+
+<pre><code>new (\VCloud\Helpers\Right($service))-&gt;queryRecords(...)
+</code></pre>
+</div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$service</h4>
+                                                <code>\VMware_VCloud_SDK_Service</code><p><p>The vCloud Director SDK Service</p>
+</p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/VCloud.Helpers.Right.html">\VCloud\Helpers\Right</a></code><p><p>Returns a new Right Handler</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getServiceHelper"></a>
+                        <div class="element clickable method protected  method_getServiceHelper" data-toggle="collapse" data-target=".method_getServiceHelper .collapse">
+                            <h2>Get the cached Service helper, or create it</h2>
+                            <pre>getServiceHelper() : \VCloud\Helpers\Service</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/VCloud.Helpers.Service.html">\VCloud\Helpers\Service</a></code><p><p>Return the Service helper associated with this helper</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getQueryHelper"></a>
+                        <div class="element clickable method protected  method_getQueryHelper" data-toggle="collapse" data-target=".method_getQueryHelper .collapse">
+                            <h2>Get the cached Query helper, or create it</h2>
+                            <pre>getQueryHelper() : \VCloud\Helpers\Query</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code><a href="../classes/VCloud.Helpers.Query.html">\VCloud\Helpers\Query</a></code><p><p>Return the Query helper associated with this helper</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_isCurrentUserOrganizationAdmin"></a>
+                        <div class="element clickable method public  method_isCurrentUserOrganizationAdmin" data-toggle="collapse" data-target=".method_isCurrentUserOrganizationAdmin .collapse">
+                            <h2>Determine whether the currently logged user is an &quot;Organization
+Administrator&quot;. An &quot;Organization Administrator&quot; is a user with the
+following rights:</h2>
+                            <pre>isCurrentUserOrganizationAdmin() : \VCloud\Helpers\Returns</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><ul>
+<li>General: Administrator Control
+
+<ul>
+<li>General: Administrator View</li>
+</ul></li>
+</ul>
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\VCloud\Helpers\Returns</code><p><p><code>true</code> if the currently logged user is an "Organization
+Administrator", <code>false</code> otherwise.</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getAllRights"></a>
+                        <div class="element clickable method public  method_getAllRights" data-toggle="collapse" data-target=".method_getAllRights .collapse">
+                            <h2>Get all existing rights</h2>
+                            <pre>getAllRights() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Returns all rights registered in vCloud Director</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getRightByName"></a>
+                        <div class="element clickable method public  method_getRightByName" data-toggle="collapse" data-target=".method_getRightByName .collapse">
+                            <h2>Find a right by its name</h2>
+                            <pre>getRightByName(string $name) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p><p>The name of the right to look for</p>
+</p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Returns all rights registered in vCloud Director</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_hasCurrentUserRights"></a>
+                        <div class="element clickable method public  method_hasCurrentUserRights" data-toggle="collapse" data-target=".method_hasCurrentUserRights .collapse">
+                            <h2>Determine whether the currently logged user has all the given rights or
+not</h2>
+                            <pre>hasCurrentUserRights(array $rights) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$rights</h4>
+                                                <code>array</code><p><p>The rights to look for (array of VMware_VCloud_API_QueryResultRightRecordType)</p>
+</p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Returns <code>true</code> if the currently logged user has ALL the
+given rights</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_hasCurrentUserRight"></a>
+                        <div class="element clickable method public  method_hasCurrentUserRight" data-toggle="collapse" data-target=".method_hasCurrentUserRight .collapse">
+                            <h2>Determine whether the currently logged user has a given right or not</h2>
+                            <pre>hasCurrentUserRight(\VMware_VCloud_API_QueryResultRightRecordType $right) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$right</h4>
+                                                <code>\VMware_VCloud_API_QueryResultRightRecordType</code><p><p>The rights to look for</p>
+</p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Returns <code>true</code> if the currently logged user has the given
+right</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCurrentUserGroupReferences"></a>
+                        <div class="element clickable method public  method_getCurrentUserGroupReferences" data-toggle="collapse" data-target=".method_getCurrentUserGroupReferences .collapse">
+                            <h2>Get the currently logged user&#039;s group references</h2>
+                            <pre>getCurrentUserGroupReferences() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Returns an array of \VMware_VCloud_API_ReferenceType objects</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCurrentUserGroups"></a>
+                        <div class="element clickable method public  method_getCurrentUserGroups" data-toggle="collapse" data-target=".method_getCurrentUserGroups .collapse">
+                            <h2>Get the currently logged user&#039;s groups</h2>
+                            <pre>getCurrentUserGroups() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Returns an array of \VMware_VCloud_SDK_Group objects</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCurrentUserRoles"></a>
+                        <div class="element clickable method public  method_getCurrentUserRoles" data-toggle="collapse" data-target=".method_getCurrentUserRoles .collapse">
+                            <h2>Get the currently logged user&#039;s roles</h2>
+                            <pre>getCurrentUserRoles() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Returns an array of \VMware_VCloud_SDK_Role objects</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getCurrentUserRightReferences"></a>
+                        <div class="element clickable method public  method_getCurrentUserRightReferences" data-toggle="collapse" data-target=".method_getCurrentUserRightReferences .collapse">
+                            <h2>Get the currently logged user&#039;s right references</h2>
+                            <pre>getCurrentUserRightReferences() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description">
+</div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Returns an array of \VMware_VCloud_API_ReferenceType objects</p>
+</p>
+                                                                    </div>
+                            </div>
+                        </div>
+                    
+                                            <h3><i class="icon-custom icon-constant"></i> Constants</h3>
+                                                    <a id="constant_CATALOG_ADD_VAPP_FROM_MY_CLOUD"> </a>
+                            <div class="element clickable constant  constant_CATALOG_ADD_VAPP_FROM_MY_CLOUD" data-toggle="collapse" data-target=".constant_CATALOG_ADD_VAPP_FROM_MY_CLOUD .collapse">
+                                <h2>Rights bundled with vCloud Director</h2>
+                                <pre>CATALOG_ADD_VAPP_FROM_MY_CLOUD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_CHANGE_OWNER"> </a>
+                            <div class="element clickable constant  constant_CATALOG_CHANGE_OWNER" data-toggle="collapse" data-target=".constant_CATALOG_CHANGE_OWNER .collapse">
+                                <h2>CATALOG_CHANGE_OWNER</h2>
+                                <pre>CATALOG_CHANGE_OWNER</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_CREATE_DELETE_A_CATALOG"> </a>
+                            <div class="element clickable constant  constant_CATALOG_CREATE_DELETE_A_CATALOG" data-toggle="collapse" data-target=".constant_CATALOG_CREATE_DELETE_A_CATALOG .collapse">
+                                <h2>CATALOG_CREATE_DELETE_A_CATALOG</h2>
+                                <pre>CATALOG_CREATE_DELETE_A_CATALOG</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_EDIT_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_CATALOG_EDIT_PROPERTIES" data-toggle="collapse" data-target=".constant_CATALOG_EDIT_PROPERTIES .collapse">
+                                <h2>CATALOG_EDIT_PROPERTIES</h2>
+                                <pre>CATALOG_EDIT_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_PUBLISH"> </a>
+                            <div class="element clickable constant  constant_CATALOG_PUBLISH" data-toggle="collapse" data-target=".constant_CATALOG_PUBLISH .collapse">
+                                <h2>CATALOG_PUBLISH</h2>
+                                <pre>CATALOG_PUBLISH</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_SHARING"> </a>
+                            <div class="element clickable constant  constant_CATALOG_SHARING" data-toggle="collapse" data-target=".constant_CATALOG_SHARING .collapse">
+                                <h2>CATALOG_SHARING</h2>
+                                <pre>CATALOG_SHARING</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS"> </a>
+                            <div class="element clickable constant  constant_CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS" data-toggle="collapse" data-target=".constant_CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS .collapse">
+                                <h2>CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS</h2>
+                                <pre>CATALOG_VIEW_PRIVATE_AND_SHARED_CATALOGS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_CATALOG_VIEW_PUBLISHED_CATALOGS"> </a>
+                            <div class="element clickable constant  constant_CATALOG_VIEW_PUBLISHED_CATALOGS" data-toggle="collapse" data-target=".constant_CATALOG_VIEW_PUBLISHED_CATALOGS .collapse">
+                                <h2>CATALOG_VIEW_PUBLISHED_CATALOGS</h2>
+                                <pre>CATALOG_VIEW_PUBLISHED_CATALOGS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DISK_CREATE"> </a>
+                            <div class="element clickable constant  constant_DISK_CREATE" data-toggle="collapse" data-target=".constant_DISK_CREATE .collapse">
+                                <h2>DISK_CREATE</h2>
+                                <pre>DISK_CREATE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DISK_DELETE"> </a>
+                            <div class="element clickable constant  constant_DISK_DELETE" data-toggle="collapse" data-target=".constant_DISK_DELETE .collapse">
+                                <h2>DISK_DELETE</h2>
+                                <pre>DISK_DELETE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DISK_EDIT_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_DISK_EDIT_PROPERTIES" data-toggle="collapse" data-target=".constant_DISK_EDIT_PROPERTIES .collapse">
+                                <h2>DISK_EDIT_PROPERTIES</h2>
+                                <pre>DISK_EDIT_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_DISK_VIEW_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_DISK_VIEW_PROPERTIES" data-toggle="collapse" data-target=".constant_DISK_VIEW_PROPERTIES .collapse">
+                                <h2>DISK_VIEW_PROPERTIES</h2>
+                                <pre>DISK_VIEW_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_GENERAL_ADMINISTRATOR_CONTROL"> </a>
+                            <div class="element clickable constant  constant_GENERAL_ADMINISTRATOR_CONTROL" data-toggle="collapse" data-target=".constant_GENERAL_ADMINISTRATOR_CONTROL .collapse">
+                                <h2>GENERAL_ADMINISTRATOR_CONTROL</h2>
+                                <pre>GENERAL_ADMINISTRATOR_CONTROL</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_GENERAL_ADMINISTRATOR_VIEW"> </a>
+                            <div class="element clickable constant  constant_GENERAL_ADMINISTRATOR_VIEW" data-toggle="collapse" data-target=".constant_GENERAL_ADMINISTRATOR_VIEW .collapse">
+                                <h2>GENERAL_ADMINISTRATOR_VIEW</h2>
+                                <pre>GENERAL_ADMINISTRATOR_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_GENERAL_SEND_NOTIFICATION"> </a>
+                            <div class="element clickable constant  constant_GENERAL_SEND_NOTIFICATION" data-toggle="collapse" data-target=".constant_GENERAL_SEND_NOTIFICATION .collapse">
+                                <h2>GENERAL_SEND_NOTIFICATION</h2>
+                                <pre>GENERAL_SEND_NOTIFICATION</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_GROUP_USER_VIEW"> </a>
+                            <div class="element clickable constant  constant_GROUP_USER_VIEW" data-toggle="collapse" data-target=".constant_GROUP_USER_VIEW .collapse">
+                                <h2>GROUP_USER_VIEW</h2>
+                                <pre>GROUP_USER_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_NETWORK_EDIT_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_NETWORK_EDIT_PROPERTIES" data-toggle="collapse" data-target=".constant_ORGANIZATION_NETWORK_EDIT_PROPERTIES .collapse">
+                                <h2>ORGANIZATION_NETWORK_EDIT_PROPERTIES</h2>
+                                <pre>ORGANIZATION_NETWORK_EDIT_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_NETWORK_VIEW"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_NETWORK_VIEW" data-toggle="collapse" data-target=".constant_ORGANIZATION_NETWORK_VIEW .collapse">
+                                <h2>ORGANIZATION_NETWORK_VIEW</h2>
+                                <pre>ORGANIZATION_NETWORK_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES" data-toggle="collapse" data-target=".constant_ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES .collapse">
+                                <h2>ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES</h2>
+                                <pre>ORGANIZATION_VDC_GATEWAY_CONFIGURE_SERVICES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES" data-toggle="collapse" data-target=".constant_ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES .collapse">
+                                <h2>ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES</h2>
+                                <pre>ORGANIZATION_VDC_NETWORK_EDIT_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_VDC_NETWORK_VIEW"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_VDC_NETWORK_VIEW" data-toggle="collapse" data-target=".constant_ORGANIZATION_VDC_NETWORK_VIEW .collapse">
+                                <h2>ORGANIZATION_VDC_NETWORK_VIEW</h2>
+                                <pre>ORGANIZATION_VDC_NETWORK_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT" data-toggle="collapse" data-target=".constant_ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT .collapse">
+                                <h2>ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT</h2>
+                                <pre>ORGANIZATION_VDC_STORAGE_PROFILE_SET_DEFAULT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_VDC_VIEW"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_VDC_VIEW" data-toggle="collapse" data-target=".constant_ORGANIZATION_VDC_VIEW .collapse">
+                                <h2>ORGANIZATION_VDC_VIEW</h2>
+                                <pre>ORGANIZATION_VDC_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_EDIT_FEDERATION_SETTINGS"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_EDIT_FEDERATION_SETTINGS" data-toggle="collapse" data-target=".constant_ORGANIZATION_EDIT_FEDERATION_SETTINGS .collapse">
+                                <h2>ORGANIZATION_EDIT_FEDERATION_SETTINGS</h2>
+                                <pre>ORGANIZATION_EDIT_FEDERATION_SETTINGS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_EDIT_LEASES_POLICY"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_EDIT_LEASES_POLICY" data-toggle="collapse" data-target=".constant_ORGANIZATION_EDIT_LEASES_POLICY .collapse">
+                                <h2>ORGANIZATION_EDIT_LEASES_POLICY</h2>
+                                <pre>ORGANIZATION_EDIT_LEASES_POLICY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_EDIT_PASSWORD_POLICY"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_EDIT_PASSWORD_POLICY" data-toggle="collapse" data-target=".constant_ORGANIZATION_EDIT_PASSWORD_POLICY .collapse">
+                                <h2>ORGANIZATION_EDIT_PASSWORD_POLICY</h2>
+                                <pre>ORGANIZATION_EDIT_PASSWORD_POLICY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_EDIT_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_EDIT_PROPERTIES" data-toggle="collapse" data-target=".constant_ORGANIZATION_EDIT_PROPERTIES .collapse">
+                                <h2>ORGANIZATION_EDIT_PROPERTIES</h2>
+                                <pre>ORGANIZATION_EDIT_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_EDIT_QUOTAS_POLICY"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_EDIT_QUOTAS_POLICY" data-toggle="collapse" data-target=".constant_ORGANIZATION_EDIT_QUOTAS_POLICY .collapse">
+                                <h2>ORGANIZATION_EDIT_QUOTAS_POLICY</h2>
+                                <pre>ORGANIZATION_EDIT_QUOTAS_POLICY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_EDIT_SMTP_SETTINGS"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_EDIT_SMTP_SETTINGS" data-toggle="collapse" data-target=".constant_ORGANIZATION_EDIT_SMTP_SETTINGS .collapse">
+                                <h2>ORGANIZATION_EDIT_SMTP_SETTINGS</h2>
+                                <pre>ORGANIZATION_EDIT_SMTP_SETTINGS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_ORGANIZATION_VIEW"> </a>
+                            <div class="element clickable constant  constant_ORGANIZATION_VIEW" data-toggle="collapse" data-target=".constant_ORGANIZATION_VIEW .collapse">
+                                <h2>ORGANIZATION_VIEW</h2>
+                                <pre>ORGANIZATION_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_TEMPLATE_MEDIA_COPY"> </a>
+                            <div class="element clickable constant  constant_VAPP_TEMPLATE_MEDIA_COPY" data-toggle="collapse" data-target=".constant_VAPP_TEMPLATE_MEDIA_COPY .collapse">
+                                <h2>VAPP_TEMPLATE_MEDIA_COPY</h2>
+                                <pre>VAPP_TEMPLATE_MEDIA_COPY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD"> </a>
+                            <div class="element clickable constant  constant_VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD" data-toggle="collapse" data-target=".constant_VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD .collapse">
+                                <h2>VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD</h2>
+                                <pre>VAPP_TEMPLATE_MEDIA_CREATE_UPLOAD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_TEMPLATE_MEDIA_EDIT"> </a>
+                            <div class="element clickable constant  constant_VAPP_TEMPLATE_MEDIA_EDIT" data-toggle="collapse" data-target=".constant_VAPP_TEMPLATE_MEDIA_EDIT .collapse">
+                                <h2>VAPP_TEMPLATE_MEDIA_EDIT</h2>
+                                <pre>VAPP_TEMPLATE_MEDIA_EDIT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_TEMPLATE_MEDIA_VIEW"> </a>
+                            <div class="element clickable constant  constant_VAPP_TEMPLATE_MEDIA_VIEW" data-toggle="collapse" data-target=".constant_VAPP_TEMPLATE_MEDIA_VIEW .collapse">
+                                <h2>VAPP_TEMPLATE_MEDIA_VIEW</h2>
+                                <pre>VAPP_TEMPLATE_MEDIA_VIEW</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_TEMPLATE_CHECKOUT"> </a>
+                            <div class="element clickable constant  constant_VAPP_TEMPLATE_CHECKOUT" data-toggle="collapse" data-target=".constant_VAPP_TEMPLATE_CHECKOUT .collapse">
+                                <h2>VAPP_TEMPLATE_CHECKOUT</h2>
+                                <pre>VAPP_TEMPLATE_CHECKOUT</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_TEMPLATE_DOWNLOAD"> </a>
+                            <div class="element clickable constant  constant_VAPP_TEMPLATE_DOWNLOAD" data-toggle="collapse" data-target=".constant_VAPP_TEMPLATE_DOWNLOAD .collapse">
+                                <h2>VAPP_TEMPLATE_DOWNLOAD</h2>
+                                <pre>VAPP_TEMPLATE_DOWNLOAD</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_CHANGE_OWNER"> </a>
+                            <div class="element clickable constant  constant_VAPP_CHANGE_OWNER" data-toggle="collapse" data-target=".constant_VAPP_CHANGE_OWNER .collapse">
+                                <h2>VAPP_CHANGE_OWNER</h2>
+                                <pre>VAPP_CHANGE_OWNER</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_COPY"> </a>
+                            <div class="element clickable constant  constant_VAPP_COPY" data-toggle="collapse" data-target=".constant_VAPP_COPY .collapse">
+                                <h2>VAPP_COPY</h2>
+                                <pre>VAPP_COPY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_CREATE_RECONFIGURE"> </a>
+                            <div class="element clickable constant  constant_VAPP_CREATE_RECONFIGURE" data-toggle="collapse" data-target=".constant_VAPP_CREATE_RECONFIGURE .collapse">
+                                <h2>VAPP_CREATE_RECONFIGURE</h2>
+                                <pre>VAPP_CREATE_RECONFIGURE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_DELETE"> </a>
+                            <div class="element clickable constant  constant_VAPP_DELETE" data-toggle="collapse" data-target=".constant_VAPP_DELETE .collapse">
+                                <h2>VAPP_DELETE</h2>
+                                <pre>VAPP_DELETE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_EDIT_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_VAPP_EDIT_PROPERTIES" data-toggle="collapse" data-target=".constant_VAPP_EDIT_PROPERTIES .collapse">
+                                <h2>VAPP_EDIT_PROPERTIES</h2>
+                                <pre>VAPP_EDIT_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_EDIT_VM_CPU"> </a>
+                            <div class="element clickable constant  constant_VAPP_EDIT_VM_CPU" data-toggle="collapse" data-target=".constant_VAPP_EDIT_VM_CPU .collapse">
+                                <h2>VAPP_EDIT_VM_CPU</h2>
+                                <pre>VAPP_EDIT_VM_CPU</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_EDIT_VM_HARD_DISK"> </a>
+                            <div class="element clickable constant  constant_VAPP_EDIT_VM_HARD_DISK" data-toggle="collapse" data-target=".constant_VAPP_EDIT_VM_HARD_DISK .collapse">
+                                <h2>VAPP_EDIT_VM_HARD_DISK</h2>
+                                <pre>VAPP_EDIT_VM_HARD_DISK</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_EDIT_VM_MEMORY"> </a>
+                            <div class="element clickable constant  constant_VAPP_EDIT_VM_MEMORY" data-toggle="collapse" data-target=".constant_VAPP_EDIT_VM_MEMORY .collapse">
+                                <h2>VAPP_EDIT_VM_MEMORY</h2>
+                                <pre>VAPP_EDIT_VM_MEMORY</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_EDIT_VM_NETWORK"> </a>
+                            <div class="element clickable constant  constant_VAPP_EDIT_VM_NETWORK" data-toggle="collapse" data-target=".constant_VAPP_EDIT_VM_NETWORK .collapse">
+                                <h2>VAPP_EDIT_VM_NETWORK</h2>
+                                <pre>VAPP_EDIT_VM_NETWORK</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_EDIT_VM_PROPERTIES"> </a>
+                            <div class="element clickable constant  constant_VAPP_EDIT_VM_PROPERTIES" data-toggle="collapse" data-target=".constant_VAPP_EDIT_VM_PROPERTIES .collapse">
+                                <h2>VAPP_EDIT_VM_PROPERTIES</h2>
+                                <pre>VAPP_EDIT_VM_PROPERTIES</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_MANAGE_VM_PASSWORD_SETTINGS"> </a>
+                            <div class="element clickable constant  constant_VAPP_MANAGE_VM_PASSWORD_SETTINGS" data-toggle="collapse" data-target=".constant_VAPP_MANAGE_VM_PASSWORD_SETTINGS .collapse">
+                                <h2>VAPP_MANAGE_VM_PASSWORD_SETTINGS</h2>
+                                <pre>VAPP_MANAGE_VM_PASSWORD_SETTINGS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_POWER_OPERATIONS"> </a>
+                            <div class="element clickable constant  constant_VAPP_POWER_OPERATIONS" data-toggle="collapse" data-target=".constant_VAPP_POWER_OPERATIONS .collapse">
+                                <h2>VAPP_POWER_OPERATIONS</h2>
+                                <pre>VAPP_POWER_OPERATIONS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_SHARING"> </a>
+                            <div class="element clickable constant  constant_VAPP_SHARING" data-toggle="collapse" data-target=".constant_VAPP_SHARING .collapse">
+                                <h2>VAPP_SHARING</h2>
+                                <pre>VAPP_SHARING</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_SNAPSHOT_OPERATIONS"> </a>
+                            <div class="element clickable constant  constant_VAPP_SNAPSHOT_OPERATIONS" data-toggle="collapse" data-target=".constant_VAPP_SNAPSHOT_OPERATIONS .collapse">
+                                <h2>VAPP_SNAPSHOT_OPERATIONS</h2>
+                                <pre>VAPP_SNAPSHOT_OPERATIONS</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <a id="constant_VAPP_USE_CONSOLE"> </a>
+                            <div class="element clickable constant  constant_VAPP_USE_CONSOLE" data-toggle="collapse" data-target=".constant_VAPP_USE_CONSOLE .collapse">
+                                <h2>VAPP_USE_CONSOLE</h2>
+                                <pre>VAPP_USE_CONSOLE</pre>
+                                <div class="labels">
+                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        
+                                                    </th>
+                                                    <td>
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property_service"> </a>
+                            <div class="element clickable property  protected property_service" data-toggle="collapse" data-target=".property_service .collapse">
+                                <h2>vCloud Director SDK Service</h2>
+                                <pre>service : \VMware_VCloud_SDK_Service</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>vCloud Director SDK Service</p>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\VMware_VCloud_SDK_Service</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_currentUserRights"> </a>
+                            <div class="element clickable property  protected property_currentUserRights" data-toggle="collapse" data-target=".property_currentUserRights .collapse">
+                                <h2>Cached current user rights</h2>
+                                <pre>currentUserRights : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Cached current user rights</p>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_serviceHelper"> </a>
+                            <div class="element clickable property  protected property_serviceHelper" data-toggle="collapse" data-target=".property_serviceHelper .collapse">
+                                <h2>Cached service helper</h2>
+                                <pre>serviceHelper : \VCloud\Helpers\Service</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Cached service helper</p>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/VCloud.Helpers.Service.html">\VCloud\Helpers\Service</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property_queryHelper"> </a>
+                            <div class="element clickable property  protected property_queryHelper" data-toggle="collapse" data-target=".property_queryHelper .collapse">
+                                <h2>Cached query helper</h2>
+                                <pre>queryHelper : \VCloud\Helpers\Query</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description">
+</div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    <p>Cached query helper</p>
+
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code><a href="../classes/VCloud.Helpers.Query.html">\VCloud\Helpers\Query</a></code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\VCloud\Helpers\Right"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/VCloud.Helpers.html">Helpers</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/VCloud.Helpers.Right.html">Right</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Wed, 04 Dec 2013 19:34:41 +0100.<br/>
+    </footer>
+    </body>
+</html>
