@@ -226,3 +226,14 @@ To start contributing, the best is to follow these steps:
 - Run unit tests: `make test`
 - Generate API documentation: `make doc`
 - Publish API documentation: `make publish`
+
+
+### Versioning
+
+Using [Semver](http://semver.org/) as a base for versioning, this project also
+follow additional guidelines for version numbering. each version is in the
+format `x.y.z` where:
+
+  - Each modification of `x` introduces backward compatibility breaks
+  - Each modification of `y` introduces a new feature
+  - Modifications of `y` are simply corrections of existing patches
