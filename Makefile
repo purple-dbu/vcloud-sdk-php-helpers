@@ -24,7 +24,7 @@ dependencies: vendor
 	# └─────────────────────────────┘
 
 vendor: composer.phar composer.json
-	[ -e composer.lock ] && php composer.phar update || php composer.phar install
+	[ -e composer.lock ] && php -d memory_limit=-1 composer.phar update || php -d memory_limit=-1 composer.phar install
 	touch vendor
 
 composer.phar:
@@ -117,3 +117,7 @@ $(DOC): dependencies src
 		--title "vCloud PHP SDK Helpers" \
 		--template responsive-twig
 	touch docs
+
+publish:
+	git add docs && git commit -m "Updated API documentation"
+	git subtree push --prefix docs origin gh-pages
