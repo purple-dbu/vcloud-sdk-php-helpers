@@ -24,7 +24,7 @@ is to add this to your `composer.json`:
   ],
   "require": {
     "php": ">=5.3.2",
-    "vmware/vcloud-sdk-patched": "551.0.*",
+    "vmware/vcloud-sdk-patched": "550.3.*",
     "pear-pear/HTTP_Request2": "2.1.*",
     "purple-dbu/vcloud-sdk-helpers": "1.0.*"
   }
