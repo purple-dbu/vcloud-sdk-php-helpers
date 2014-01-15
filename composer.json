@@ -39,7 +39,7 @@
         "amercier/cli-helpers": "1.3.*",
         "pear-pear/Log": "1.12.*",
         "pear-pear/PHP_CodeSniffer": "1.4.*",
-        "phpdocumentor/phpdocumentor": "2.1.0",
+        "phpdocumentor/phpdocumentor": "2.2.0",
         "phpunit/phpunit": "3.7.*",
         "satooshi/php-coveralls": "0.6.*",
         "zendframework/zend-config": "2.2.*",
