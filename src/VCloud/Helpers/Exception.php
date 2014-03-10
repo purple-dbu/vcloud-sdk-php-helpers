@@ -43,7 +43,19 @@ class Exception
     public function __construct(\VMware_VCloud_SDK_Exception $originalException)
     {
         $this->originalException = $originalException;
-        $this->document = new \SimpleXMLElement($originalException->getMessage());
+        $internalErrors = libxml_use_internal_errors(true);
+        try {
+            $this->document = new \SimpleXMLElement($originalException->getMessage());
+        }
+        catch(\Exception $e) {
+            libxml_clear_errors();
+            $this->document = new \SimpleXMLElement(
+                '<Error message="'
+                . htmlentities($originalException->getMessage())
+                . '" majorErrorCode="" minorErrorCode="" stackTrace="" />'
+            );
+        }
+        libxml_use_internal_errors($internalErrors);
     }
 
     /**
