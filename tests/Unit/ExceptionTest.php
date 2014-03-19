@@ -29,20 +29,29 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
                 . $this->id . '" exists where it shouldn\'t'
             );
         } catch (\VMware_VCloud_SDK_Exception $e) {
-            $this->e = $e;
+            $this->e1 = $e;
         }
+
+        $this->e2 = new \VMware_VCloud_SDK_Exception(
+            'POST https://... failed, return code: 406, error: No valid API version can be selected.'
+        );
     }
 
     public function testGetOriginalException()
     {
-        $this->assertEquals($this->e, \VCloud\Helpers\Exception::create($this->e)->getOriginalException());
+        $this->assertEquals($this->e1, \VCloud\Helpers\Exception::create($this->e1)->getOriginalException());
+        $this->assertEquals($this->e2, \VCloud\Helpers\Exception::create($this->e2)->getOriginalException());
     }
 
     public function testGetMessage()
     {
         $this->assertEquals(
             'The VCD entity com.vmware.vcloud.entity.org:' . $this->id . ' does not exist.',
-            \VCloud\Helpers\Exception::create($this->e)->getMessage()
+            \VCloud\Helpers\Exception::create($this->e1)->getMessage()
+        );
+        $this->assertEquals(
+            'POST https://... failed, return code: 406, error: No valid API version can be selected.',
+            \VCloud\Helpers\Exception::create($this->e2)->getMessage()
         );
     }
 
@@ -50,7 +59,11 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             '403',
-            \VCloud\Helpers\Exception::create($this->e)->getMajorErrorCode()
+            \VCloud\Helpers\Exception::create($this->e1)->getMajorErrorCode()
+        );
+        $this->assertEquals(
+            '',
+            \VCloud\Helpers\Exception::create($this->e2)->getMajorErrorCode()
         );
     }
 
@@ -58,7 +71,11 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             'ACCESS_TO_RESOURCE_IS_FORBIDDEN',
-            \VCloud\Helpers\Exception::create($this->e)->getMinorErrorCode()
+            \VCloud\Helpers\Exception::create($this->e1)->getMinorErrorCode()
+        );
+        $this->assertEquals(
+            '',
+            \VCloud\Helpers\Exception::create($this->e2)->getMinorErrorCode()
         );
     }
 
@@ -66,7 +83,11 @@ class ExceptionTestCase extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             158,
-            count(explode("\n", \VCloud\Helpers\Exception::create($this->e)->getStackTrace()))
+            count(explode("\n", \VCloud\Helpers\Exception::create($this->e1)->getStackTrace()))
+        );
+        $this->assertEquals(
+            1,
+            count(explode("\n", \VCloud\Helpers\Exception::create($this->e2)->getStackTrace()))
         );
     }
 }

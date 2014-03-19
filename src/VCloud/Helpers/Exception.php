@@ -45,10 +45,9 @@ class Exception
         $this->originalException = $originalException;
         $internalErrors = libxml_use_internal_errors(true);
 
-
         try {
             $this->document = new \SimpleXMLElement($originalException->getMessage());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             libxml_clear_errors();
             $this->document = new \SimpleXMLElement(
                 '<Error message="' . htmlentities($originalException->getMessage())
