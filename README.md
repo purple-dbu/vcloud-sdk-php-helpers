@@ -16,6 +16,8 @@ Installation can be done via [Composer](http://getcomposer.org/). All you need
 is to add this to your `composer.json`:
 
 ```json
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "php": ">=5.3.2",
     "vmware/vcloud-sdk-patched": "550.3.*",
