@@ -16,13 +16,14 @@ Installation can be done via [Composer](http://getcomposer.org/). All you need
 is to add this to your `composer.json`:
 
 ```json
-  "minimum-stability": "dev",
-  "prefer-stable": true,
+  "repositories": [
+    {
+      "type": "pear",
+      "url": "http://pear.php.net"
+    }
+  ],
   "require": {
-    "php": ">=5.3.2",
-    "vmware/vcloud-sdk-patched": "550.3.*",
-    "pear/http_request2": "2.2.*",
-    "purple-dbu/vcloud-sdk-helpers": "1.0.*"
+    "purple-dbu/vcloud-sdk-helpers": "1.1.2"
   }
 ```
 
