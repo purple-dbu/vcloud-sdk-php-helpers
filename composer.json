@@ -39,7 +39,7 @@
     },
     "require-dev": {
         "amercier/cli-helpers": "1.3.*",
-        "pear-pear.php.net/Log": "*",
+        "pear-pear.php.net/Log": "1.12.*",
         "pear-pear.php.net/PHP_CodeSniffer": "1.5.*",
         "phpdocumentor/phpdocumentor": "2.3.*",
         "phpunit/phpunit": "4.0.*",
