@@ -23,7 +23,7 @@ is to add this to your `composer.json`:
     }
   ],
   "require": {
-    "purple-dbu/vcloud-sdk-helpers": "1.1.2"
+    "purple-dbu/vcloud-sdk-helpers": "1.1.3"
   }
 ```
 
