@@ -61,7 +61,8 @@ lint: dependencies
 tests/_files.tar.gz: src tests/Unit
 	# ┌──────────────────────────────────────────────┐
 	# │ Stubs are out of date in tests/_files.tar.gz │
-	# │ Please run `make stubs` to re-generate them  │
+	# │ Please run `make stubs` to re-generate them, │
+	# │ or `touch tests/_files.tar.gz`.              │
 	# └──────────────────────────────────────────────┘
 	exit 1
 
