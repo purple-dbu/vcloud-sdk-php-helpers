@@ -49,10 +49,15 @@ class Exception
             $this->document = new \SimpleXMLElement($originalException->getMessage());
         } catch (\Exception $e) {
             libxml_clear_errors();
-            $this->document = new \SimpleXMLElement(
-                '<Error message="' . htmlentities($originalException->getMessage())
-                . '" majorErrorCode="" minorErrorCode="" stackTrace="" />'
-            );
+
+            if (preg_match('/.*(<Error [^>]+(><\\/Error>|\\/>)).*/', $originalException->getMessage(), $matches)) {
+                $this->document = new \SimpleXMLElement($matches[1]);
+            } else {
+                $this->document = new \SimpleXMLElement(
+                    '<Error message="' . htmlentities($originalException->getMessage())
+                    . '" majorErrorCode="" minorErrorCode="" stackTrace="" />'
+                );
+            }
         }
         libxml_use_internal_errors($internalErrors);
     }
@@ -125,7 +130,9 @@ class Exception
         return preg_replace(
             '/  +at/',
             "\n             at",
-            $this->document->attributes()->stackTrace->__toString()
+            isset($this->document->attributes()->stackTrace)
+            ? $this->document->attributes()->stackTrace->__toString()
+            : ''
         );
     }
 }
