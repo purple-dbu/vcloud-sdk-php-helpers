@@ -6,16 +6,15 @@
 
 namespace VCloud\Helpers;
 
-use VCloud\Helpers\Exception as ExceptionHelper;
-use VMware_VCloud_SDK_Exception;
-use VMware_VCloud_API_MediaType;
-use VMware_VCloud_API_ReferenceType;
-use VMware_VCloud_API_CatalogItemType;
-use SplObjectStorage;
-use SplObserver;
-use SplSubject;
-use Closure;
-use Exception;
+use \SplObjectStorage;
+use \SplObserver;
+use \SplSubject;
+use \Closure;
+use \VMware_VCloud_SDK_Exception;
+use \VMware_VCloud_API_MediaType;
+use \VMware_VCloud_API_ReferenceType;
+use \VMware_VCloud_API_CatalogItemType;
+use Exception as ExceptionHelper;
 
 /**
  * The Upload Helper gives you the ability to upload media and vApp templates
@@ -80,7 +79,13 @@ class Upload implements SplSubject
     protected $error;
     protected $refreshRate;
 
-    public function __construct($service, $filePath, $catalogReference, $orgVdcReference, $refreshRate = self::DEFAULT_REFRESH_RATE) {
+    public function __construct(
+        $service,
+        $filePath,
+        $catalogReference,
+        $orgVdcReference,
+        $refreshRate = self::DEFAULT_REFRESH_RATE
+    ) {
         $this->observers = new SplObjectStorage();
         $this->service = $service;
         $this->catalogReference = $catalogReference;
@@ -96,8 +101,16 @@ class Upload implements SplSubject
     protected function updateFileInfo()
     {
         $basename = basename($this->filePath);
-        if (!preg_match('/^(.*)\\.(' . implode('|', self::getSupportedFiles()) . ')$/', $basename, $matches)) {
-            throw new Exception('Invalid file ' . $this->filePath . '. Supported file types: ' . implode(', ', self::getSupportedFiles()));
+        if (!preg_match(
+            '/^(.*)\\.(' . implode('|', self::getSupportedFiles()) . ')$/',
+            $basename,
+            $matches
+        )) {
+            throw new \Exception(
+                'Invalid file ' . $this->filePath
+                . '. Supported file types: '
+                . implode(', ', self::getSupportedFiles())
+            );
         }
 
         $this->name = $matches[1];
@@ -106,27 +119,30 @@ class Upload implements SplSubject
 
         if (!file_exists($this->filePath)) {
             $this->setState(self::STATE_ERROR);
-            throw new Exception('File ' . $this->filePath . ' does not exist');
+            throw new \Exception('File ' . $this->filePath . ' does not exist');
         }
         if (!is_readable($this->filePath)) {
             $this->setState(self::STATE_ERROR);
-            throw new Exception('File ' . $this->filePath . ' exists but is not readable');
+            throw new \Exception('File ' . $this->filePath . ' exists but is not readable');
         }
         if (is_dir($this->filePath)) {
             $this->setState(self::STATE_ERROR);
-            throw new Exception('File ' . $this->filePath . ' is a directory');
+            throw new \Exception('File ' . $this->filePath . ' is a directory');
         }
     }
 
-    public function attach(SplObserver $observer) {
+    public function attach(SplObserver $observer)
+    {
         $this->observers->attach($observer);
     }
 
-    public function detach(SplObserver $observer) {
+    public function detach(SplObserver $observer)
+    {
         $this->observers->detach($observer);
     }
 
-    public function notify($eventType = null, $previousValue = null) {
+    public function notify($eventType = null, $previousValue = null)
+    {
         foreach ($this->observers as $observer) {
             $observer->update($this, $eventType, $previousValue);
         }
@@ -228,7 +244,7 @@ class Upload implements SplSubject
 
         $media = null;
         $i = 0;
-        while($media === null) {
+        while ($media === null) {
             try {
                 $media = $orgVDC->uploadIsoMedia(
                     $this->getFilePath(),
@@ -246,9 +262,8 @@ class Upload implements SplSubject
                     $name = $originalName . '_' . $i;
                     $mediaType->set_name($name);
                     $this->setName($name);
-                }
-                else {
-                    throw new Exception($e->getMessage());
+                } else {
+                    throw new \Exception($e->getMessage());
                 }
             }
         }
@@ -274,37 +289,32 @@ class Upload implements SplSubject
                 // Return true if task is finished
                 if ($status === 1) {
                     $this->setProgress(100);
-                }
-                // Throw an exception if status is -1
-                else if ($status === -1) {
+                } elseif ($status === -1) {
+                    // Throw an exception if status is -1
                     $this->setState(self::STATE_ERROR);
                     if ($task === null) {
-                        throw new Exception('Cannot upload media. Unknown reason.');
-                    }
-                    else if ($task->get_status() === 'error') {
+                        throw new \Exception('Cannot upload media. Unknown reason.');
+                    } elseif ($task->get_status() === 'error') {
                         $error = $task->getError();
-                        throw new Exception('Error during upload: ' . $error[0]->get_message());
+                        throw new \Exception('Error during upload: ' . $error[0]->get_message());
+                    } else {
+                        throw new \Exception('Stopped upload: ' . $task->get_status() . '.');
                     }
-                    else {
-                        throw new Exception('Stopped upload: ' . $task->get_status() . '.');
-                    }
-                }
-                // Otherwise (still transferring), update progress
-                else {
-                    // Update progress
+                } else {
+                    // Otherwise (still transferring), update progress
+                    // a. Update progress
                     if ($task !== null) {
                         $this->setProgress(intval($task->getProgress()));
-                    }
-                    else {
+                    } else {
                         echo print_r($tasks, true) . "\n";
                     }
 
-                    // Sleep until next tick
+                    // b. Sleep until next tick
                     sleep($this->refreshRate);
                 }
             }
         // Try to delete media if NOK
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             if ($e instanceof VMware_VCloud_SDK_Exception) {
                 $e = new ExceptionHelper($e);
             }
@@ -312,10 +322,13 @@ class Upload implements SplSubject
                 $this->setState(self::STATE_DELETING);
                 $media->delete();
                 $this->setState(self::STATE_ERROR);
-                throw new Exception($e->getMessage() . ' Media has been deleted.');
+                throw new \Exception($e->getMessage() . ' Media has been deleted.');
             } catch (VMware_VCloud_SDK_Exception $e2) {
                 $this->setState(self::STATE_ERROR);
-                throw new Exception($e->getMessage() . ' Failed to delete media. ' . ExceptionHelper::create($e2)->getMessage());
+                throw new \Exception(
+                    $e->getMessage() . ' Failed to delete media. '
+                    . ExceptionHelper::create($e2)->getMessage()
+                );
             }
         }
 
