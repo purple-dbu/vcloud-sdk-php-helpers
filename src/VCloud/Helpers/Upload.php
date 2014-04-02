@@ -10,11 +10,12 @@ use \SplObjectStorage;
 use \SplObserver;
 use \SplSubject;
 use \Closure;
+use \VMware_VCloud_API_CatalogItemType;
+use \VMware_VCloud_SDK_Constants;
 use \VMware_VCloud_SDK_Exception;
 use \VMware_VCloud_API_MediaType;
 use \VMware_VCloud_API_ReferenceType;
-use \VMware_VCloud_API_CatalogItemType;
-use Exception as ExceptionHelper;
+use \VCloud\Helpers\Exception as ExceptionHelper;
 
 /**
  * The Upload Helper gives you the ability to upload media and vApp templates
@@ -54,7 +55,6 @@ use Exception as ExceptionHelper;
 class Upload implements SplSubject
 {
     const SUPPORTED_FILES = 'ovf ova iso flp';
-
     const STATE_ERROR = 0;
     const STATE_IDLE = 1;
     const STATE_UPLOADING = 2;
@@ -65,12 +65,19 @@ class Upload implements SplSubject
 
     const DEFAULT_REFRESH_RATE = 1.0;
 
+    protected static $CONTENT_TYPES = array(
+        'flp' => VMware_VCloud_SDK_Constants::MEDIA_CONTENT_TYPE,
+        'iso' => VMware_VCloud_SDK_Constants::MEDIA_CONTENT_TYPE,
+        'ova' => VMware_VCloud_SDK_Constants::VAPP_TEMPLATE_CONTENT_TYPE,
+        'ovf' => VMware_VCloud_SDK_Constants::VAPP_TEMPLATE_CONTENT_TYPE,
+    );
+
     protected $service;
     protected $observers;
     protected $filePath;
     protected $fileSize;
-    protected $catalogReference;
-    protected $orgVdcReference;
+    protected $catalog;
+    protected $orgVdc;
     protected $name;
     protected $type;
 
@@ -88,13 +95,11 @@ class Upload implements SplSubject
     ) {
         $this->observers = new SplObjectStorage();
         $this->service = $service;
-        $this->catalogReference = $catalogReference;
-        $this->orgVdcReference = $orgVdcReference;
+        $this->orgVdc = $this->service->createSDkObj($orgVdcReference);
+        $this->catalog = $this->service->createSDkObj($catalogReference);
         $this->refreshRate = $refreshRate;
-
         $this->filePath = $filePath;
         $this->updateFileInfo();
-
         $this->state = self::STATE_IDLE;
     }
 
@@ -168,14 +173,14 @@ class Upload implements SplSubject
         }
     }
 
-    public function getCatalogReference()
+    public function getCatalog()
     {
-        return $this->catalogReference;
+        return $this->catalog;
     }
 
-    public function getOrgVdcReference()
+    public function getOrgVdc()
     {
-        return $this->orgVdcReference;
+        return $this->orgVdc;
     }
 
     public function getName()
@@ -206,6 +211,11 @@ class Upload implements SplSubject
         }
     }
 
+    public function getType()
+    {
+        return $this->type;
+    }
+
     public function getFileSize()
     {
         return $this->fileSize;
@@ -225,102 +235,148 @@ class Upload implements SplSubject
         }
     }
 
-    public function start()
+    protected function upload()
     {
-        $originalName = $this->getName();
-        $orgVDC = $this->service->createSDkObj($this->orgVdcReference);
-        $catalog = $this->service->createSDkObj($this->catalogReference);
-
-        // TODO ovf ova flp iso
-        $mediaType = new VMware_VCloud_API_MediaType();
-        $mediaType->set_name($originalName);
-        $mediaType->set_imageType('iso');
-        $mediaType->set_size($this->getFileSize());
-
-
-        // 1. Upload
-
         $this->setState(self::STATE_UPLOADING);
+        $originalName = $this->getName();
 
-        $media = null;
         $i = 0;
-        while ($media === null) {
+        while (true) {
             try {
-                $media = $orgVDC->uploadIsoMedia(
-                    $this->getFilePath(),
-                    $mediaType,
-                    Closure::bind(function ($done) {
-                        $this->setProgress($done);
-                    }, $this)
-                );
+                while (count($this->getCatalog()->getCatalogItems($this->getName())) !== 0) {
+                    $this->setName($originalName . '_' . ++$i);
+                }
+                switch ($this->getType()) {
+                    case 'iso':
+                    case 'flp':
+                        $media = new VMware_VCloud_API_MediaType();
+                        $media->set_name($this->getName());
+                        $media->set_imageType($this->getType());
+                        $media->set_size($this->getFileSize());
+
+                        return $this->getOrgVDC()->uploadMedia(
+                                $this->getFilePath(),
+                                $this->getType() === 'iso' ? 'iso' : 'floppy',
+                                $media,
+                                Closure::bind(function ($done) {
+                                    $this->setProgress($done);
+                                }, $this)
+                            )->get_href();
+                    case 'ovf':
+                        return $this->getOrgVDC()->uploadOVFAsVAppTemplate(
+                            $this->getName(),
+                            $this->getFilePath(),
+                            null,
+                            false,
+                            null,
+                            $this->getCatalog()->getCatalogRef()
+                        );
+                    case 'ova':
+                        throw new \Exception('OVA upload not implemented yet');
+                }
             } catch (VMware_VCloud_SDK_Exception $exception) {
                 $e = new ExceptionHelper($exception);
 
                 // If the name exists, rename _XXX
                 if ($e->getMinorErrorCode() === 'DUPLICATE_NAME') {
-                    $i++;
-                    $name = $originalName . '_' . $i;
-                    $mediaType->set_name($name);
-                    $this->setName($name);
+                    $this->setName($originalName . '_' . ++$i);
                 } else {
                     throw new \Exception($e->getMessage());
                 }
             }
         }
+    }
 
-        // 2. Transfer to vDC
+    protected function indexToCatalog($href)
+    {
+        $reference = new VMware_VCloud_API_ReferenceType();
+        $reference->set_href($href);
+        $reference->set_type(self::$CONTENT_TYPES[$this->getType()]);
+        $sdkObject = $this->service->createSDkObj($reference);
 
+        $this->setState(self::STATE_INDEXING);
+        try {
+            $item = new VMware_VCloud_API_CatalogItemType();
+            $item->setEntity($reference);
+            $item->set_name($this->getName());
+            $this->getCatalog()->addCatalogItem($item);
+            return $sdkObject;
+
+        } catch (VMware_VCloud_SDK_Exception $e) {
+            throw new \Exception(
+                'Failed to index ' . $this->getName()
+                . ' to catalog ' . $this->getCatalog()->getCatalog()->get_name() . '. '
+                . ExceptionHelper::create($e)->getMessage()
+            );
+        }
+    }
+
+    protected function getDataObject($sdkObject)
+    {
+        switch ($this->getType()) {
+            case 'iso':
+            case 'flp':
+                return $sdkObject->getMedia();
+            case 'ovf':
+            case 'ova':
+                return $sdkObject->getVAppTemplate();
+        }
+    }
+
+    protected function waitForTransfer($sdkObject)
+    {
         $this->setState(self::STATE_TRANSFERRING);
 
-        $mediaReference = new VMware_VCloud_API_ReferenceType();
-        $mediaReference->set_href($media->get_href());
-        $mediaReference->set_type('application/vnd.vmware.vcloud.media+xml');
-        $media = $this->service->createSDkObj($mediaReference);
+        $status = 0;
+        while ($status !== 1 && $status !== 8) {
+            $dataObject = $this->getDataObject($sdkObject);
+            $status = intval($dataObject->get_status());
+            $tasks = $dataObject->getTasks();
+            $tasks = $tasks === null ? null : $tasks->getTask();
+            $task = $tasks === null ? null : $tasks[0];
 
-        try {
-            $status = 0;
-            while ($status !== 1) {
-                $mediaData = $media->getMedia();
-                $status = intval($mediaData->get_status());
-                $tasks = $mediaData->getTasks();
-                $tasks = $tasks === null ? null : $tasks->getTask();
-                $task = $tasks === null ? null : $tasks[0];
-
-                // Return true if task is finished
-                if ($status === 1) {
-                    $this->setProgress(100);
-                } elseif ($status === -1) {
-                    // Throw an exception if status is -1
-                    $this->setState(self::STATE_ERROR);
-                    if ($task === null) {
-                        throw new \Exception('Cannot upload media. Unknown reason.');
-                    } elseif ($task->get_status() === 'error') {
-                        $error = $task->getError();
-                        throw new \Exception('Error during upload: ' . $error[0]->get_message());
-                    } else {
-                        throw new \Exception('Stopped upload: ' . $task->get_status() . '.');
-                    }
+            // Return true if task is finished
+            if ($status === 1 || $status === 8) {
+                $this->setProgress(100);
+            } elseif ($status === -1) {
+                // Throw an exception if status is -1
+                $this->setState(self::STATE_ERROR);
+                if ($task === null) {
+                    throw new \Exception('Cannot upload. Unknown reason.');
+                } elseif ($task->get_status() === 'error') {
+                    $error = $task->getError();
+                    throw new \Exception('Error during upload: ' . $error[0]->get_message());
                 } else {
-                    // Otherwise (still transferring), update progress
-                    // a. Update progress
-                    if ($task !== null) {
-                        $this->setProgress(intval($task->getProgress()));
-                    } else {
-                        echo print_r($tasks, true) . "\n";
-                    }
-
-                    // b. Sleep until next tick
-                    sleep($this->refreshRate);
+                    throw new \Exception('Stopped upload: ' . $task->get_status() . '.');
                 }
+            } else {
+                // Otherwise (still transferring), update progress
+                // a. Update progress
+                if ($task !== null) {
+                    $this->setProgress(intval($task->getProgress()));
+                }
+
+                // b. Sleep until next tick
+                sleep($this->refreshRate);
             }
-        // Try to delete media if NOK
+        }
+    }
+
+    public function start()
+    {
+        $href = $this->upload();
+        $sdkObject = $this->indexToCatalog($href);
+        try {
+            $this->waitForTransfer($sdkObject);
+
         } catch (\Exception $e) {
             if ($e instanceof VMware_VCloud_SDK_Exception) {
                 $e = new ExceptionHelper($e);
             }
+            // Try to delete media if NOK
+            $this->setState(self::STATE_DELETING);
             try {
-                $this->setState(self::STATE_DELETING);
-                $media->delete();
+                $sdkObject->delete();
                 $this->setState(self::STATE_ERROR);
                 throw new \Exception($e->getMessage() . ' Media has been deleted.');
             } catch (VMware_VCloud_SDK_Exception $e2) {
@@ -331,14 +387,6 @@ class Upload implements SplSubject
                 );
             }
         }
-
-        // 3. Indexing
-
-        // Index to catalog
-        $item = new VMware_VCloud_API_CatalogItemType();
-        $item->setEntity($mediaReference) ;
-        $item->set_name($name);
-        $catalog->addCatalogItem($item);
 
         $this->setState(self::STATE_SUCCESS);
     }
