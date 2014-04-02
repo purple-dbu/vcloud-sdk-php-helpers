@@ -255,13 +255,13 @@ class Upload implements SplSubject
                         $media->set_size($this->getFileSize());
 
                         return $this->getOrgVDC()->uploadMedia(
-                                $this->getFilePath(),
-                                $this->getType() === 'iso' ? 'iso' : 'floppy',
-                                $media,
-                                Closure::bind(function ($done) {
-                                    $this->setProgress($done);
-                                }, $this)
-                            )->get_href();
+                            $this->getFilePath(),
+                            $this->getType() === 'iso' ? 'iso' : 'floppy',
+                            $media,
+                            Closure::bind(function ($done) {
+                                $this->setProgress($done);
+                            }, $this)
+                        )->get_href();
                     case 'ovf':
                         return $this->getOrgVDC()->uploadOVFAsVAppTemplate(
                             $this->getName(),
