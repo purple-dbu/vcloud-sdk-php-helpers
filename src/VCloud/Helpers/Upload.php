@@ -221,6 +221,15 @@ class Upload implements SplSubject
         return $this->fileSize;
     }
 
+    public function setFileSize($fileSize)
+    {
+        $previousFileSize = $this->fileSize;
+        if ($fileSize !== $previousFileSize) {
+            $this->fileSize = $fileSize;
+            $this->notify('fileSize');
+        }
+    }
+
     public function getProgress()
     {
         return $this->progress;
@@ -269,7 +278,11 @@ class Upload implements SplSubject
                             null,
                             false,
                             null,
-                            $this->getCatalog()->getCatalogRef()
+                            $this->getCatalog()->getCatalogRef(),
+                            Closure::bind(function ($done, $total) {
+                                $this->setFileSize($total);
+                                $this->setProgress($done);
+                            }, $this)
                         );
                     case 'ova':
                         throw new \Exception('OVA upload not implemented yet');
