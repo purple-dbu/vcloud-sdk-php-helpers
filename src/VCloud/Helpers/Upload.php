@@ -108,7 +108,7 @@ class Upload implements SplSubject
         $basename = basename($this->filePath);
         if (!preg_match(
             '/^(.*)\\.(' . implode('|', self::getSupportedFiles()) . ')$/',
-            $basename,
+            strtolower($basename),
             $matches
         )) {
             throw new \Exception(
